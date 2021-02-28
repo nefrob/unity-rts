@@ -12,12 +12,12 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private LayerMask selectableMask;
 
     // Tracking selected objects
-    private HashSet<SelectionSprite> selectedObjects;
+    private HashSet<Selectable> selectedObjects;
     private UnitManager unitManager;
 
     void Awake()
     {
-        selectedObjects = new HashSet<SelectionSprite>();
+        selectedObjects = new HashSet<Selectable>();
         unitManager = FindObjectOfType<UnitManager>();
     }
     void Update()
@@ -43,8 +43,7 @@ public class SelectionManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableMask))
         {
-            // Debug.Log(hit.transform.name);
-            var s = hit.transform.GetComponent<SelectionSprite>();
+            var s = hit.transform.GetComponent<Selectable>();
             // if (check unit ownership, etc.)
             
             if (shiftHeld && selectedObjects.Contains(s))
@@ -67,7 +66,7 @@ public class SelectionManager : MonoBehaviour
 
     private void DeselectAll()
     {
-        foreach (SelectionSprite s in selectedObjects)
+        foreach (Selectable s in selectedObjects)
         {
             s.DeselectObject();
         }
@@ -81,7 +80,7 @@ public class SelectionManager : MonoBehaviour
         Vector2 min = selectionBox.anchoredPosition - (selectionBox.sizeDelta / 2);
         Vector2 max = selectionBox.anchoredPosition + (selectionBox.sizeDelta / 2);
 
-        foreach (SelectionSprite s in unitManager.allObjects)
+        foreach (Selectable s in unitManager.allObjects)
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(s.gameObject.transform.position);
             if (screenPos.x > min.x && screenPos.x < max.x 

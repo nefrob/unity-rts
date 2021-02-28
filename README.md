@@ -16,3 +16,5 @@ AI
 Multiplayer
 Menus
 Animation
+
+Uses: https://github.com/Unity-Technologies/NavMeshComponents
