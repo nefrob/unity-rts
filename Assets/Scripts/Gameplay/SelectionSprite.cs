@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectionSprite : MonoBehaviour
 {
+    // Sprite image to toggle
     public SpriteRenderer select_sprite;
 
     void Awake()

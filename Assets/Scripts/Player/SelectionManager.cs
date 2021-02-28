@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    // TODO
+    // UI selection box
     [SerializeField] private RectTransform selectionBox;
     private Vector2 boxStartPos;
 
-    // 
+    // Selection layer mask
     [SerializeField] private LayerMask selectableMask;
 
-    // 
+    // Tracking selected objects
     private HashSet<SelectionSprite> selectedObjects;
     private UnitManager unitManager;
 

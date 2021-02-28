@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //
+    // Whether to use keyboard or mouse to move Camera
     [SerializeField] bool useKeyBoardMove = true;
 
-    //
+    // Movement speeds
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float edgeMoveSpeed = 50f;
     [SerializeField] private float rotateSpeed = 10f;
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minZoom = 5f;
     [SerializeField] private float moveBoarder = 50f;
 
-    //
+    // Target to follow
     private Transform followTransform; 
 
     void Start()
