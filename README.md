@@ -1,2 +1,2 @@
 # unity-rts
-Curious Cardinals Project RTs Game Prep
+Curious Cardinals Project RTS Game Prep
