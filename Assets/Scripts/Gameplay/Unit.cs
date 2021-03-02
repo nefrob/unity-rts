@@ -14,6 +14,7 @@ public class Unit : Selectable
 
     void Update()
     {
+        // Maybe migrate to function called on all selected items
         if (this.IsSelected() && Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -25,4 +26,17 @@ public class Unit : Selectable
             }
         }
     }
+
+    // TODO: if decide want world position on ground layer
+    // void TryWorldMove(Vector3 pos)
+    // {
+    //     Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(pos);
+    //     RaycastHit hit;
+
+    //     if (Physics.Raycast(mouseWorldPos, Camera.main.transform.forward,
+    //         out hit, Mathf.Infinity, groundMask))
+    //     {
+    //         agent.SetDestination(hit.point);
+    //     }
+    // }
 }
