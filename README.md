@@ -10,13 +10,16 @@ Property of Curious Cardinals.
 - Object selection, box selection  
 - Camera movement  
     - Pan, rotate, zoom, drag  
+    - [Clamp to level edge](https://answers.unity.com/questions/1223377/how-to-stop-the-camera-when-the-player-has-reached.html)
 - Pathing  
     - Movement, object tracking, cancelling tracking, following unit
 - Vision, "fog of war"  
     - Hidden, revealed but no vision, see  
+    - [Shader  / rendertexture](https://andrewhungblog.wordpress.com/2018/06/23/implementing-fog-of-war-in-unity/)
+    [Grid ref count](https://blog.gemserk.com/2018/08/27/implementing-fog-of-war-for-rts-games-in-unity-1-2/)
 - Terrain  
     - Level building  
-    - Generation (if random try tile approach like AOE2)  
+    - Generation (if random try tile approach like AOE2), [texturing](https://tech.innogames.com/terrain-shader-in-unity/)
 - Actions  
     - Right click indicator  
     - Shift queueing?  
