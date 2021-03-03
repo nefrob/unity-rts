@@ -5,19 +5,19 @@ using UnityEngine;
 public class SelectionManager : MonoBehaviour
 {
     // UI selection box
-    [SerializeField] private RectTransform selectionBox;
+    [SerializeField] private RectTransform selectionBox = null;
     private Vector2 boxStartPos;
 
     // Selection layer mask
-    [SerializeField] private LayerMask selectableMask;
+    [SerializeField] private LayerMask selectableMask = 0;
 
     // Tracking selected objects
-    private HashSet<SelectionSprite> selectedObjects;
+    private HashSet<Selectable> selectedObjects;
     private UnitManager unitManager;
 
     void Awake()
     {
-        selectedObjects = new HashSet<SelectionSprite>();
+        selectedObjects = new HashSet<Selectable>();
         unitManager = FindObjectOfType<UnitManager>();
     }
     void Update()
@@ -43,10 +43,10 @@ public class SelectionManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableMask))
         {
-            // Debug.Log(hit.transform.name);
-            var s = hit.transform.GetComponent<SelectionSprite>();
-            // if (check unit ownership, etc.)
-            
+            var s = hit.transform.GetComponent<Selectable>();
+
+            // FIXME: check unit ownership
+            // FIXME: check selectables are same type (ex. not resource and unit)
             if (shiftHeld && selectedObjects.Contains(s))
             {
                 selectedObjects.Remove(s);
@@ -67,7 +67,7 @@ public class SelectionManager : MonoBehaviour
 
     private void DeselectAll()
     {
-        foreach (SelectionSprite s in selectedObjects)
+        foreach (Selectable s in selectedObjects)
         {
             s.DeselectObject();
         }
@@ -81,7 +81,7 @@ public class SelectionManager : MonoBehaviour
         Vector2 min = selectionBox.anchoredPosition - (selectionBox.sizeDelta / 2);
         Vector2 max = selectionBox.anchoredPosition + (selectionBox.sizeDelta / 2);
 
-        foreach (SelectionSprite s in unitManager.allObjects)
+        foreach (Selectable s in unitManager.allObjects)
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(s.gameObject.transform.position);
             if (screenPos.x > min.x && screenPos.x < max.x 
