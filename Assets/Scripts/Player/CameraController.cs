@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minZoom = 5f;
     [SerializeField] private float moveBoarder = 50f;
 
+    [SerializeField] private Transform camTransform = null;
+
     // Target to follow
     private Transform followTransform; 
 
@@ -74,7 +76,7 @@ public class CameraController : MonoBehaviour
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         float dist = Vector3.Distance(transform.position, 
-            Camera.main.transform.position);
+            camTransform.position);
 
         if ((dist <= minZoom && scrollInput > 0.0f) 
             || (dist >= maxZoom && scrollInput < 0.0f))
@@ -82,10 +84,10 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        Vector3 zoomPos = Camera.main.transform.position;
-        zoomPos += scrollInput * zoomSpeed * Camera.main.transform.forward; 
-        Camera.main.transform.position = Vector3.Lerp(
-            Camera.main.transform.position, zoomPos, Time.deltaTime);
+        Vector3 zoomPos = camTransform.position;
+        zoomPos += scrollInput * zoomSpeed * camTransform.forward;  // FIXME: clamp
+        camTransform.position = Vector3.Lerp(
+            camTransform.position, zoomPos, Time.deltaTime);
     }
 
     private void Rotate()

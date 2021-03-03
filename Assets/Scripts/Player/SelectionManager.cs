@@ -5,11 +5,11 @@ using UnityEngine;
 public class SelectionManager : MonoBehaviour
 {
     // UI selection box
-    [SerializeField] private RectTransform selectionBox;
+    [SerializeField] private RectTransform selectionBox = null;
     private Vector2 boxStartPos;
 
     // Selection layer mask
-    [SerializeField] private LayerMask selectableMask;
+    [SerializeField] private LayerMask selectableMask = 0;
 
     // Tracking selected objects
     private HashSet<Selectable> selectedObjects;
@@ -44,8 +44,9 @@ public class SelectionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableMask))
         {
             var s = hit.transform.GetComponent<Selectable>();
-            // if (check unit ownership, etc.)
-            
+
+            // FIXME: check unit ownership
+            // FIXME: check selectables are same type (ex. not resource and unit)
             if (shiftHeld && selectedObjects.Contains(s))
             {
                 selectedObjects.Remove(s);

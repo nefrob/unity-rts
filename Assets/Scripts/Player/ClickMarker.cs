@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class ClickMarker : MonoBehaviour
 {
-    // [SerializeField] private SpriteRenderer arrowSprite;
-    [SerializeField] private Image arrow;
+    // Marker display
+    // FIXME: loop in with selection/action managers for different sprites
+    [SerializeField] private Image arrow = null;
     [SerializeField] private float displayTime = 1.0f;
     private float remainingDiplayTime;
+
+    // Ground positioning
+    [SerializeField] private LayerMask groundMask = 0;
+    [SerializeField] private Camera cam = null;
 
     void Awake()
     {
@@ -17,37 +22,31 @@ public class ClickMarker : MonoBehaviour
 
     void Update()
     {
+        // Countdown visibility time
         remainingDiplayTime -= Time.deltaTime;
         if (remainingDiplayTime <= 0)
         {
-            // arrowSprite.enabled = false;
             arrow.enabled = false;
         }
 
         // Make arrow face the camera
-        transform.eulerAngles = Camera.main.transform.eulerAngles;
+        transform.eulerAngles = cam.transform.eulerAngles;
 
         if (Input.GetMouseButtonDown(1))
         {
-            // FIXME: add support for other sprite type, loop in with an action manager and selection manager
-            
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,  Mathf.Infinity, groundMask))
             {
                 Vector3 pos = hit.point;
                 pos.y = transform.position.y;
                 transform.position = pos;
 
                 remainingDiplayTime = displayTime;
-                // arrowSprite.enabled = true;
                 arrow.enabled = true;
 
-                // fixme tween bounce?
-                // fixme 
+                // FIXME: tween sprite?
             }
-
         }
     }
 }

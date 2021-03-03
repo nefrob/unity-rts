@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 291416215}
   - component: {fileID: 291416214}
   - component: {fileID: 291416213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,13 +710,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709652369}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 200, z: -200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1733588952}
+  m_Father: {fileID: 1434807824}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &709652371
 Camera:
   m_ObjectHideFlags: 0
@@ -770,7 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 829083715}
   - component: {fileID: 829083716}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: SelectionSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 838304535}
-  displayTime: 1
+  displayTime: 5
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512
+  cam: {fileID: 709652371}
 --- !u!4 &970037795
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1009647021
 MonoBehaviour:
@@ -1293,13 +1297,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256558498}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 200, z: -200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1733588952}
+  m_Father: {fileID: 1434807824}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1256558500
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1339,7 +1343,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 791
+    m_Bits: 1815
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1478,7 +1482,7 @@ MonoBehaviour:
   selectionBox: {fileID: 1906206979}
   selectableMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
 --- !u!224 &1390461471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1498,6 +1502,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1434807823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1434807824}
+  m_Layer: 0
+  m_Name: CameraPositioner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1434807824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434807823}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 200, z: -200}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1256558499}
+  - {fileID: 709652370}
+  m_Father: {fileID: 1733588952}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &1527189800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,7 +1544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1527189801}
   - component: {fileID: 1527189802}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: SelectionSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1751,7 @@ GameObject:
   - component: {fileID: 1733588952}
   - component: {fileID: 1733588953}
   m_Layer: 0
-  m_Name: CameraHolder
+  m_Name: CameraController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1732,10 +1768,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1256558499}
-  - {fileID: 709652370}
+  - {fileID: 1434807824}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1733588953
 MonoBehaviour:
@@ -1754,9 +1789,10 @@ MonoBehaviour:
   edgeMoveSpeed: 250
   rotateSpeed: 50
   zoomSpeed: 20000
-  maxZoom: 350
-  minZoom: 175
+  maxZoom: 450
+  minZoom: 200
   moveBoarder: 50
+  camTransform: {fileID: 1434807824}
 --- !u!1 &1762065528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,9 +1906,9 @@ GameObject:
   - component: {fileID: 1819992773}
   - component: {fileID: 1819992772}
   - component: {fileID: 1819992771}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Unit (1)
-  m_TagString: target
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1904,7 +1940,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b746441bfdd372c4faf9a9bd54bae007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  select_sprite: {fileID: 1527189802}
+  selection_sprite: {fileID: 1527189802}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  targetTag: Unit
 --- !u!195 &1819992772
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1919,7 +1959,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 0
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2018,7 +2058,7 @@ Transform:
   m_GameObject: {fileID: 1883659503}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -62.3, y: 2.5, z: 9.1}
-  m_LocalScale: {x: 50, y: 5, z: 5}
+  m_LocalScale: {x: 50, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1214304750}
   m_RootOrder: 5
@@ -2190,9 +2230,9 @@ GameObject:
   - component: {fileID: 2067634270}
   - component: {fileID: 2067634268}
   - component: {fileID: 2067634267}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Unit
-  m_TagString: target
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2224,7 +2264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b746441bfdd372c4faf9a9bd54bae007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  select_sprite: {fileID: 829083716}
+  selection_sprite: {fileID: 829083716}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  targetTag: Unit
 --- !u!195 &2067634268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2239,7 +2283,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 0
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

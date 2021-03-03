@@ -4,39 +4,47 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Unit : Selectable
 {
+    // Naviagation agent
     private NavMeshAgent agent;
+
+    // Targets eligible for follow
+    [SerializeField] private LayerMask targetMask = 0;
+    [SerializeField] private string targetTag = "Unit";
+    private Transform target;
 
     protected override void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
+        target = null;
     }
 
     void Update()
     {
-        // Maybe migrate to function called on all selected items
+        // Update tracking
+        if (target != null)
+        {
+            agent.SetDestination(target.position);
+        }
+
+        // FIXME: migrate to function called on all selected items
         if (this.IsSelected() && Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
             {
+                if (hit.transform.tag == targetTag)
+                {
+                    target = hit.transform;
+                } else 
+                {
+                    target = null;
+                }
+
                 agent.SetDestination(hit.point);
             }
         }
     }
-
-    // TODO: if decide want world position on ground layer
-    // void TryWorldMove(Vector3 pos)
-    // {
-    //     Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(pos);
-    //     RaycastHit hit;
-
-    //     if (Physics.Raycast(mouseWorldPos, Camera.main.transform.forward,
-    //         out hit, Mathf.Infinity, groundMask))
-    //     {
-    //         agent.SetDestination(hit.point);
-    //     }
-    // }
 }

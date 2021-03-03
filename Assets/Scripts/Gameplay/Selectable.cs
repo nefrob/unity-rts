@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {   
-    public SpriteRenderer select_sprite;
+    public SpriteRenderer selection_sprite;
 
     protected virtual void Awake()
     {
-        select_sprite.enabled = false;
+        selection_sprite.enabled = false;
     }
 
     public void SelectObject()
     {
-        select_sprite.enabled = true;
+        selection_sprite.enabled = true;
     }
 
     public void DeselectObject()
     {
-        select_sprite.enabled = false;
+        selection_sprite.enabled = false;
     }
 
-    public bool IsSelected()
+    protected bool IsSelected()
     {
-        return select_sprite.enabled;
+        return selection_sprite.enabled;
     }
 }

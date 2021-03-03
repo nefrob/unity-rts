@@ -12,12 +12,13 @@ Mechanics to explore (in no particular order presently):
 Pathing
     ~~movement~~, object tracking, cancelling tracking, following unit
 Vision, "fog of war"
+    Hidden, revealed but no vision, see
 Terrain
     Level building / generation (if random try tile approach like AOE2)
 Resources
     Gathering, interacting, destruction, using
 Attacking
-    Single target, next target, "stances"
+    Single target, next target, "stances" (ex. attack enemy if can see)
     Ranged?
 AI
     Response, build orders, exploring, etc.
@@ -26,9 +27,9 @@ Actions
     Right click indicator
     Shift queueing?
 Grouping
-    Formations, commands
+    Formations, commands, spacing, micro
 Multiplayers
-    PVP, PVE, offline and P2P/server based
+    PVP, PVE, offline and P2P/server-based
 Menus
 UI
     Develop as project needs new components
