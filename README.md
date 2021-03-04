@@ -16,10 +16,12 @@ Property of Curious Cardinals.
 - Vision, "fog of war"  
     - Hidden, revealed but no vision, see  
     - [Shader  / rendertexture](https://andrewhungblog.wordpress.com/2018/06/23/implementing-fog-of-war-in-unity/)
-    [Grid ref count](https://blog.gemserk.com/2018/08/27/implementing-fog-of-war-for-rts-games-in-unity-1-2/)
+    - [Grid ref count](https://blog.gemserk.com/2018/08/27/implementing-fog-of-war-for-rts-games-in-unity-1-2/)
 - Terrain  
     - Level building  
     - Generation (if random try tile approach like AOE2), [texturing](https://tech.innogames.com/terrain-shader-in-unity/)
+    - [Clamp pos](https://forum.unity.com/threads/in-game-snap-to-grid.77029/)
+    - Try tile map mesh of some kind for levels
 - Actions  
     - Right click indicator  
     - Shift queueing?  
