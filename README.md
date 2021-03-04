@@ -51,6 +51,8 @@ Property of Curious Cardinals.
 
 [Flow chart](https://drive.google.com/file/d/1ahTbVrirH2d-aui5a-4yt30Q8P8YACB0/view?usp=sharing)  
 
+[VSCode issue](https://github.com/OmniSharp/omnisharp-roslyn/issues/1094)
+
 #### Requirements:
 
 [NavMeshComponents](https://github.com/Unity-Technologies/NavMeshComponents)
