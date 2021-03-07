@@ -18,7 +18,7 @@ public class FogProjector : MonoBehaviour
     private RenderTexture curTex;
     private Projector projector;
 
-    private void Awake ()
+    private void Awake()
     {
         blendAmount = 0.0f;
         prevTex = GenerateTexture();

@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projMaterial: {fileID: 2100000, guid: d6bcf9391a7560e448cc2f2844647966, type: 2}
-  blendSpeed: 5
+  blendSpeed: 100
   textureScale: 2
   visionTex: {fileID: 8400000, guid: 65ab2c6ba614cd54591f615f0a76b855, type: 2}
 --- !u!119 &104058972
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projMaterial: {fileID: 2100000, guid: 658ae52697103994dbb58f52e75350b1, type: 2}
-  blendSpeed: 5
+  blendSpeed: 100
   textureScale: 2
   visionTex: {fileID: 8400000, guid: ef2a439b84985ee48a7712adc47a9d14, type: 2}
 --- !u!119 &1103730648
