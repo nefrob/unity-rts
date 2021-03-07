@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ClickMarker : MonoBehaviour
@@ -32,9 +33,9 @@ public class ClickMarker : MonoBehaviour
         // Make arrow face the camera
         transform.eulerAngles = cam.transform.eulerAngles;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current.rightButton.wasPressedThisFrame)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit,  Mathf.Infinity, groundMask))
             {
