@@ -3,7 +3,6 @@
 This project represents testing and development for simple RTS game mechanics using Unity Game Engine and C#.
 
 Author: Robert Neff (rneff@alumni.stanford.edu)  
-Property of Curious Cardinals.
 
 #### RTS concepts to implement:  
 
@@ -16,10 +15,13 @@ Property of Curious Cardinals.
 - Vision, "fog of war"  
     - Hidden, revealed but no vision, see  
     - [Shader  / rendertexture](https://andrewhungblog.wordpress.com/2018/06/23/implementing-fog-of-war-in-unity/)
-    [Grid ref count](https://blog.gemserk.com/2018/08/27/implementing-fog-of-war-for-rts-games-in-unity-1-2/)
+    - [Grid ref count](https://blog.gemserk.com/2018/08/27/implementing-fog-of-war-for-rts-games-in-unity-1-2/)
+    - Disable mesh rendered when out of view (trigger check) -> wait for team semantics and actions to make this work
 - Terrain  
     - Level building  
     - Generation (if random try tile approach like AOE2), [texturing](https://tech.innogames.com/terrain-shader-in-unity/)
+    - [Clamp pos](https://forum.unity.com/threads/in-game-snap-to-grid.77029/)
+    - Try tile map mesh of some kind for levels
 - Actions  
     - Right click indicator  
     - Shift queueing?  
@@ -36,7 +38,9 @@ Property of Curious Cardinals.
 - Grouping  
     - Formations, commands, patrolling, spacing, micro  
 - Multiplayers  
-    - PVP, PVE, offline and P2P/server-based  
+    - Offline and P2P/server-based  
+    - PVE
+    - Network = send enemy unit / building locations and status, update locations as needed
 - Menus  
 - UI  
     - Develop as project needs new components, integrate with UI hanlder / Input handler of some kind
@@ -48,6 +52,10 @@ Property of Curious Cardinals.
 #### Links 
 
 [Flow chart](https://drive.google.com/file/d/1ahTbVrirH2d-aui5a-4yt30Q8P8YACB0/view?usp=sharing)  
+
+[XposeCraft](https://github.com/scscgit/XposeCraft)  
+
+[RTS](https://github.com/DanielKM/unity-RTS)
 
 #### Requirements:
 

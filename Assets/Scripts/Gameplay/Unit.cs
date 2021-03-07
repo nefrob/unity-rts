@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Unit : Selectable
 {
-    // Naviagation agent
+    // Navigation agent
     private NavMeshAgent agent;
 
     // Targets eligible for follow
