@@ -8,8 +8,8 @@ using Mirror;
 public class Unit: Selectable
 {
     [SerializeField] private UnitMovement unitMovement = null;
-
     [SerializeField] private Targeter targeter = null;
+    [SerializeField] private Health health = null;
 
     public static event Action<Unit> ServerOnUnitSpawn;
     public static event Action<Unit> ServerOnUnitDespawn;
@@ -32,27 +32,33 @@ public class Unit: Selectable
     public override void OnStartServer()
     {
         ServerOnUnitSpawn?.Invoke(this);
+        health.ServerOnDie += ServerHandleDie;
     }
 
     public override void OnStopServer()
     {
         ServerOnUnitDespawn?.Invoke(this);
+        health.ServerOnDie -= ServerHandleDie;
+    }
+
+    [Server]
+    private void ServerHandleDie()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     #endregion
 
     #region client
 
-    public override void OnStartClient()
+    public override void OnStartAuthority()
     {
-        if (!isClientOnly || !hasAuthority) return;
-
         AuthoryOnUnitSpawn?.Invoke(this);
     }
 
     public override void OnStopClient()
     {
-        if (!isClientOnly || !hasAuthority) return;
+        if (!hasAuthority) return;
 
         AuthoryOnUnitDespawn?.Invoke(this);
     }

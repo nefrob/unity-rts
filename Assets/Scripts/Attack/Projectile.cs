@@ -8,6 +8,7 @@ public class Projectile : NetworkBehaviour
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float lifetime = 5.0f;
     [SerializeField] private float force = 10.0f;
+    [SerializeField] private float attackDamage = 10.0f;
 
     void Start()
     {
@@ -18,11 +19,27 @@ public class Projectile : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        Invoke(nameof(DestoryProjectile), lifetime);
+        Invoke(nameof(DestroyProjectile), lifetime);
+    }
+
+    [ServerCallback]
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity identity))
+        {
+            if (identity.connectionToClient == connectionToClient) return; // self hit
+        }
+
+        if (other.TryGetComponent<Health>(out Health health))
+        {
+            health.Damage(attackDamage);
+        }
+
+        DestroyProjectile();
     }
 
     [Server]
-    private void DestoryProjectile()
+    private void DestroyProjectile()
     {
         NetworkServer.Destroy(gameObject);
     }

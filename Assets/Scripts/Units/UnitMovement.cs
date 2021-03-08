@@ -9,13 +9,22 @@ public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
 
-    [SerializeField] private LayerMask targetMask = 0;
-
+    [SerializeField] private LayerMask targetMask = new LayerMask();
     [SerializeField] private Targeter targeter = null;
-
     [SerializeField] float chaseRange = 10.0f;
 
     #region server
+
+    public override void OnStartServer()
+    {
+        GameOverManager.ServerOnGameOver += ServerHandleGameOver;
+    }
+
+    public override void OnStopServer()
+    {
+        GameOverManager.ServerOnGameOver -= ServerHandleGameOver;
+    }
+
 
     [ServerCallback]
     private void Update()
@@ -55,32 +64,12 @@ public class UnitMovement : NetworkBehaviour
         agent.SetDestination(hit.position);
     }
 
+    [Server]
+    private void ServerHandleGameOver()
+    {
+        agent.ResetPath();
+    }
+
+
     #endregion
-
-    // #region Client
-
-    // public override void OnStartAuthority()
-    // {
-    //     base.OnStartAuthority();
-    //     cam = Camera.main;
-    // }
-
-    // [ClientCallback]
-    // private void Update()
-    // {
-    //     if (!hasAuthority) return;
-
-    //     // TODO: !this.isSelected() && 
-    //     if (!Mouse.current.rightButton.wasPressedThisFrame) return;
-
-    //     Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-    //     RaycastHit hit;
-
-    //     if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
-    //     {
-    //         CmdMoveUnit(hit.point);
-    //     }
-    // }
-
-    // #endregion
 }

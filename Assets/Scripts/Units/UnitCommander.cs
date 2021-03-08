@@ -14,7 +14,14 @@ public class UnitCommander : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        GameOverManager.ClientOnGameOver += ClientHandleGameOver;
     }
+
+    private void OnDestroy()
+    {
+        GameOverManager.ClientOnGameOver -= ClientHandleGameOver;
+    }
+
 
     private void Update()
     {
@@ -35,9 +42,10 @@ public class UnitCommander : MonoBehaviour
             }
 
             return;
+        } else
+        {
+            TryMove(hit.point);
         }
-
-        TryMove(hit.point);
     }
 
     private void TryMove(Vector3 pos)
@@ -55,4 +63,10 @@ public class UnitCommander : MonoBehaviour
             unit.GetTargeter().CmdSetTarget(target.gameObject);
         }
     }
+
+    private void ClientHandleGameOver(string winnerName)
+    {
+        enabled = false;
+    }
+
 }

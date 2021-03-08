@@ -8,8 +8,26 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject unitPrefab = null;
     [SerializeField] private Transform gatherPoint = null;
+    [SerializeField] private Health health = null;
 
     #region server
+
+    public override void OnStartServer()
+    {
+        health.ServerOnDie += ServerHandleDie;
+    }
+
+    public override void OnStopServer()
+    {
+        health.ServerOnDie -= ServerHandleDie;
+    }
+
+    [Server]
+    private void ServerHandleDie()
+    {
+        // FIXME: on same obj as base right now so both destroy
+        // NetworkServer.Destroy(gameObject);
+    }
 
     [Command]
     private void CmdSpawnUnit()

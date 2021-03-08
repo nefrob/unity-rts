@@ -50,9 +50,9 @@ public class Player : NetworkBehaviour
 
     #region client
 
-    public override void OnStartClient()
+    public override void OnStartAuthority()
     {
-        if (!isClientOnly) return;
+        if (NetworkServer.active) return;
 
         Unit.AuthoryOnUnitSpawn -= AuthoryHandleUnitSpawn;
         Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
@@ -60,7 +60,7 @@ public class Player : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        if (!isClientOnly) return;
+        if (!isClientOnly || !hasAuthority) return;
 
         Unit.AuthoryOnUnitSpawn -= AuthoryHandleUnitSpawn;
         Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
@@ -68,15 +68,14 @@ public class Player : NetworkBehaviour
 
     private void AuthoryHandleUnitSpawn(Unit unit)
     {
-        if (!hasAuthority) return;
-
+        int id = unit.connectionToClient.connectionId;
+        Debug.Log($"Player {id} adding unit");
+        
         units.Add(unit);
     }
 
     private void AuthoryHandleUnitDespawn(Unit unit)
     {
-        if (!hasAuthority) return;
-
         units.Remove(unit);
     }
 

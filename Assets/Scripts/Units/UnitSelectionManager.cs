@@ -19,12 +19,19 @@ public class UnitSelectionManager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        player = NetworkClient.connection.identity.GetComponent<Player>();
+        Unit.AuthoryOnUnitDespawn += AuthorityHandleUnitDespawn;
+        GameOverManager.ClientOnGameOver += ClientHandleGameOver;
+    }
+
+    private void OnDestroy()
+    {
+        Unit.AuthoryOnUnitDespawn -= AuthorityHandleUnitDespawn;
+        GameOverManager.ClientOnGameOver -= ClientHandleGameOver;
     }
 
     private void Update()
     {
-        // TODO: fix issue player not yet initialized
+        // TODO: fix issue player not yet initialized, broken if only client!!!
         if (player == null)
         {
             player = NetworkClient.connection.identity.GetComponent<Player>();
@@ -86,6 +93,7 @@ public class UnitSelectionManager : MonoBehaviour
 
         foreach (Unit unit in player.GetAllUnits())
         {
+
             if (SelectedUnits.Contains(unit)) continue;
 
             Vector3 screenPos = cam.WorldToScreenPoint(unit.transform.position);
@@ -119,5 +127,15 @@ public class UnitSelectionManager : MonoBehaviour
             u.Deselect();
         }
         SelectedUnits.Clear();
+    }
+
+    private void AuthorityHandleUnitDespawn(Unit unit)
+    {
+        SelectedUnits.Remove(unit);
+    }
+
+    private void ClientHandleGameOver(string winnerName)
+    {
+        enabled = false;
     }
 }
