@@ -8,8 +8,6 @@ using UnityEngine.InputSystem;
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
-
-    [SerializeField] private LayerMask targetMask = new LayerMask();
     [SerializeField] private Targeter targeter = null;
     [SerializeField] float chaseRange = 10.0f;
 
