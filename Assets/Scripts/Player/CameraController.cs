@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class CameraController : MonoBehaviour
             Rotate();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             followTransform = null;
         }
@@ -49,15 +50,17 @@ public class CameraController : MonoBehaviour
         if (useKeyBoardMove)
         {
             Vector3 movePos = transform.position;
-            movePos += transform.forward * Input.GetAxis("Vertical");
-            movePos += transform.right * Input.GetAxis("Horizontal");
+            int vert = Keyboard.current.wKey.isPressed ? 1 : (Keyboard.current.sKey.isPressed ? -1 : 0);
+            int hor = Keyboard.current.dKey.isPressed ? 1 : (Keyboard.current.aKey.isPressed ? -1 : 0);
+            movePos += transform.forward * vert;
+            movePos += transform.right * hor;
 
-            transform.position = Vector3.Lerp(transform.position,
+            transform.position = Vector3.Lerp(transform.position, // FIXME: clamp
                 movePos, moveSpeed * Time.deltaTime);
         } else
         {
             Vector3 movePos = transform.position;
-            Vector2 mousePos = Input.mousePosition;
+            Vector2 mousePos = Mouse.current.position.ReadValue();
 
             Rect leftRect = new Rect(0, 0, moveBoarder, Screen.height);
             Rect rightRect = new Rect(Screen.width - moveBoarder, 0, moveBoarder, Screen.height);
@@ -67,14 +70,16 @@ public class CameraController : MonoBehaviour
             movePos.x += leftRect.Contains(mousePos) ? -1 : rightRect.Contains(mousePos) ? 1 : 0;
             movePos.z += upRect.Contains(mousePos) ? 1 : downRect.Contains(mousePos) ? -1 : 0;
 
-            transform.position = Vector3.Lerp(transform.position,
+            transform.position = Vector3.Lerp(transform.position, // FIXME: clamp
                 movePos, edgeMoveSpeed * Time.deltaTime);
         }
     }
 
     private void Zoom()
     {
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        float scrollInput = Mouse.current.scroll.y.ReadValue();
+        if (scrollInput == 0) return;
+
         float dist = Vector3.Distance(transform.position, 
             camTransform.position);
 
@@ -86,6 +91,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 zoomPos = camTransform.position;
         zoomPos += scrollInput * zoomSpeed * camTransform.forward;  // FIXME: clamp
+
         camTransform.position = Vector3.Lerp(
             camTransform.position, zoomPos, Time.deltaTime);
     }
@@ -93,11 +99,11 @@ public class CameraController : MonoBehaviour
     private void Rotate()
     {
         Quaternion newRot = transform.rotation;
-        if (Input.GetKey(KeyCode.Q))
+        if (Keyboard.current.qKey.isPressed)
         {
             newRot *= Quaternion.Euler(Vector3.up * rotateSpeed);
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Keyboard.current.eKey.isPressed)
         {
             newRot *= Quaternion.Euler(Vector3.up * -rotateSpeed);
         }

@@ -39,8 +39,11 @@ Author: Robert Neff (rneff@alumni.stanford.edu)
     - Formations, commands, patrolling, spacing, micro  
 - Multiplayers  
     - Offline and P2P/server-based  
-    - PVE
-    - Network = send enemy unit / building locations and status, update locations as needed
+    - PVE  
+    - Network = send enemy unit / building locations and status, update locations as needed  
+    - [Lockstep updates](https://bitbucket.org/brimock/lockstep-sample/src/master/Assets/Code/), [article](http://clintonbrennan.com/2013/12/lockstep-implementation-in-unity3d/)  
+    - [client server lockstep](https://medium.com/@evan_73063/rts-client-server-networking-36e8154ff740)  
+    
 - Menus  
 - UI  
     - Develop as project needs new components, integrate with UI hanlder / Input handler of some kind
@@ -57,6 +60,21 @@ Author: Robert Neff (rneff@alumni.stanford.edu)
 
 [RTS](https://github.com/DanielKM/unity-RTS)
 
+[Courses?](https://courseupload.com/unity-multiplayer-intermediate-c-coding-and-networking1/)
+
 #### Requirements:
 
+- Assets:
+
 [NavMeshComponents](https://github.com/Unity-Technologies/NavMeshComponents)
+
+[Mirror](https://assetstore.unity.com/packages/tools/network/mirror-129321)
+
+- Packages:
+
+ProGrids (preview package)
+
+ProBuilder
+
+Cinemachine? Input System?
+
