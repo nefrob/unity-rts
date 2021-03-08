@@ -14,7 +14,7 @@ public class ClickMarker : MonoBehaviour
 
     // Ground positioning
     [SerializeField] private LayerMask groundMask = 0;
-    [SerializeField] private Camera cam = null;
+    [SerializeField] private Camera overlayCam = null;
 
     void Awake()
     {
@@ -30,12 +30,9 @@ public class ClickMarker : MonoBehaviour
             arrow.enabled = false;
         }
 
-        // Make arrow face the camera
-        transform.eulerAngles = cam.transform.eulerAngles;
-
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
-            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = overlayCam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit,  Mathf.Infinity, groundMask))
             {
