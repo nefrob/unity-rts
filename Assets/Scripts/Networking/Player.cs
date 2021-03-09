@@ -5,6 +5,8 @@ using Mirror;
 
 public class Player : NetworkBehaviour
 {
+    [SerializeField] private Building[] availableBuildings = new Building[0];
+
     private List<Unit> units = new List<Unit>();
     private List<Building> buildings = new List<Building>();
 
@@ -37,6 +39,28 @@ public class Player : NetworkBehaviour
         Building.ServerOnBuildingSpawn -= ServerHandleBuildingSpawn;
         Building.ServerOnBuildingDespawn -= ServerHandleBuildingDespawn;
 
+    }
+
+    [Command]
+    public void CmdTryPlaceBuilding(int buildingId, Vector3 point)
+    {
+        Building buildingToPlace = null;
+
+        foreach (Building building in availableBuildings)
+        {
+            if (building.GetId() == buildingId)
+            {
+                buildingToPlace = building;
+                break;
+            }
+        }
+
+        if (buildingToPlace == null) return;
+
+        GameObject buildingInstance =
+            Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
+
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
     }
 
     private void ServerHandleUnitSpawn(Unit unit)
