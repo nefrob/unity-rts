@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour
 
     // Movement speeds
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float edgeMoveSpeed = 50f;
     [SerializeField] private float rotateSpeed = 10f;
     [SerializeField] private float zoomSpeed = 10f;
     [SerializeField] private float maxZoom = 20f;
@@ -19,12 +18,38 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Transform camTransform = null;
 
+    [SerializeField] private Transform mapPlane = null;
+    [SerializeField] private float mapCameraEdgeBorder = 20.0f;
+
     // Target to follow
-    private Transform followTransform; 
+    private Transform followTransform;
+
+    private Rect leftRect;
+    private Rect rightRect;
+    private Rect upRect;
+    private Rect downRect;
+
+    private Vector3 mapMinBounds;
+    private Vector3 mapMaxBounds;
+
+    private const int PLANE_SCALE = 10;
 
     void Start()
     {
         followTransform = null;
+        leftRect = new Rect(0, 0, moveBoarder, Screen.height);
+        rightRect = new Rect(Screen.width - moveBoarder, 0, moveBoarder, Screen.height);
+        upRect = new Rect(0, Screen.height - moveBoarder, Screen.width, moveBoarder);
+        downRect = new Rect(0, 0, Screen.width, moveBoarder);
+
+        float planeOffsetX = mapPlane.localScale.x * PLANE_SCALE / 2;
+        float planeOffsetZ = mapPlane.localScale.z * PLANE_SCALE / 2;
+        mapMinBounds = new Vector3(mapPlane.position.x - planeOffsetX, 0, mapPlane.position.z - planeOffsetZ);
+        mapMaxBounds = new Vector3(mapPlane.position.x + planeOffsetX, 0, mapPlane.position.z + planeOffsetZ);
+        mapMinBounds.x += mapCameraEdgeBorder;
+        mapMinBounds.z += mapCameraEdgeBorder;
+        mapMaxBounds.x -= mapCameraEdgeBorder;
+        mapMaxBounds.z -= mapCameraEdgeBorder;
     }
 
     void Update()
@@ -47,32 +72,46 @@ public class CameraController : MonoBehaviour
 
     private void Move()
     {
+        Vector3 movePos = transform.position;
+
+        int vert = 0;
+        int hor = 0;
         if (useKeyBoardMove)
         {
-            Vector3 movePos = transform.position;
-            int vert = Keyboard.current.wKey.isPressed ? 1 : (Keyboard.current.sKey.isPressed ? -1 : 0);
-            int hor = Keyboard.current.dKey.isPressed ? 1 : (Keyboard.current.aKey.isPressed ? -1 : 0);
-            movePos += transform.forward * vert;
-            movePos += transform.right * hor;
-
-            transform.position = Vector3.Lerp(transform.position, // FIXME: clamp
-                movePos, moveSpeed * Time.deltaTime);
+            vert = Keyboard.current.wKey.isPressed ? 1 : (Keyboard.current.sKey.isPressed ? -1 : 0);
+            hor = Keyboard.current.dKey.isPressed ? 1 : (Keyboard.current.aKey.isPressed ? -1 : 0);
         } else
         {
-            Vector3 movePos = transform.position;
             Vector2 mousePos = Mouse.current.position.ReadValue();
 
-            Rect leftRect = new Rect(0, 0, moveBoarder, Screen.height);
-            Rect rightRect = new Rect(Screen.width - moveBoarder, 0, moveBoarder, Screen.height);
-            Rect upRect = new Rect(0, Screen.height - moveBoarder, Screen.width, moveBoarder);
-            Rect downRect = new Rect(0, 0, Screen.width, moveBoarder);
-
-            movePos.x += leftRect.Contains(mousePos) ? -1 : rightRect.Contains(mousePos) ? 1 : 0;
-            movePos.z += upRect.Contains(mousePos) ? 1 : downRect.Contains(mousePos) ? -1 : 0;
-
-            transform.position = Vector3.Lerp(transform.position, // FIXME: clamp
-                movePos, edgeMoveSpeed * Time.deltaTime);
+            vert = upRect.Contains(mousePos) ? 1 : downRect.Contains(mousePos) ? -1 : 0;
+            hor = leftRect.Contains(mousePos) ? -1 : rightRect.Contains(mousePos) ? 1 : 0;
         }
+
+        if (vert == 0 && hor == 0) return;
+
+        movePos += transform.forward * vert * moveSpeed * Time.deltaTime;
+        movePos += transform.right * hor * moveSpeed * Time.deltaTime;
+
+        // Clamp camera movement at screen edges
+        if (movePos.x > mapMaxBounds.x) 
+        {
+            movePos.x = mapMaxBounds.x;
+        }
+        if (movePos.z > mapMaxBounds.z) 
+        {
+            movePos.z = mapMaxBounds.z;
+        }
+        if (movePos.x < mapMinBounds.x)
+        {
+            movePos.x = mapMinBounds.x;
+        }
+        if (movePos.z < mapMinBounds.z)
+        {
+            movePos.z = mapMinBounds.z;
+        }
+
+        transform.position = movePos;
     }
 
     private void Zoom()
@@ -83,14 +122,26 @@ public class CameraController : MonoBehaviour
         float dist = Vector3.Distance(transform.position, 
             camTransform.position);
 
-        if ((dist <= minZoom && scrollInput > 0.0f) 
+        if ((dist <= minZoom && scrollInput > 0.0f)
             || (dist >= maxZoom && scrollInput < 0.0f))
         {
             return;
         }
 
         Vector3 zoomPos = camTransform.position;
-        zoomPos += scrollInput * zoomSpeed * camTransform.forward;  // FIXME: clamp
+        zoomPos += scrollInput * zoomSpeed * camTransform.forward;
+
+        // Clamp check
+        dist = Vector3.Distance(transform.position, 
+            camTransform.position);
+
+        if (dist <= minZoom && scrollInput > 0.0f)
+        {
+            zoomPos = transform.position - minZoom * camTransform.forward.normalized;
+        } else if (dist >= maxZoom && scrollInput < 0.0f)
+        {
+            zoomPos = transform.position - maxZoom * camTransform.forward.normalized;
+        }
 
         camTransform.position = Vector3.Lerp(
             camTransform.position, zoomPos, Time.deltaTime);

@@ -1822,7 +1822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256558498}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2159,15 +2159,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1016af76976cdf246a14ebe29072cde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useKeyBoardMove: 1
-  moveSpeed: 50
-  edgeMoveSpeed: 250
+  useKeyBoardMove: 0
+  moveSpeed: 30
   rotateSpeed: 50
   zoomSpeed: 20
   maxZoom: 250
   minZoom: 75
   moveBoarder: 50
   camTransform: {fileID: 1434807824}
+  mapPlane: {fileID: 291416216}
+  mapCameraEdgeBorder: 20
 --- !u!1 &1883659503
 GameObject:
   m_ObjectHideFlags: 0
