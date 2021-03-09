@@ -31,7 +31,8 @@ Author: Robert Neff (rneff@alumni.stanford.edu)
 - Attacking  
     - Single target, next target  
     - "Stances" (ex. attack enemy if can see)  
-    - Ranged?  
+    - Ranged -> [projectile arcing](https://en.wikipedia.org/wiki/Projectile_motion), object tracking, wall angle avoidance, [formulas](http://hyperphysics.phy-astr.gsu.edu/hbase/traj.html)
+    - [Tutorial?](https://vilbeyli.github.io/Projectile-Motion-Tutorial-for-Arrows-and-Missiles-in-Unity3D/)
 - AI  
     - Response, build orders, exploring, etc.  
 - Building  

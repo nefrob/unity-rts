@@ -7,19 +7,27 @@ public class Projectile : NetworkBehaviour
 {
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float lifetime = 5.0f;
-    [SerializeField] private float force = 10.0f;
     [SerializeField] private float attackDamage = 10.0f;
-
-    void Start()
-    {
-        rb.velocity = transform.forward * force;
-    }
 
     #region server
 
     public override void OnStartServer()
     {
         Invoke(nameof(DestroyProjectile), lifetime);
+    }
+
+    [Server]
+    public void SetInitialVelocity(Vector3 velocity)
+    {
+        rb.velocity = velocity;
+    }
+
+    [ServerCallback]
+    private void Update()
+    {
+        transform.rotation = Quaternion.LookRotation(rb.velocity);
+
+        //? object tracking for moving accuracy?
     }
 
     [ServerCallback]

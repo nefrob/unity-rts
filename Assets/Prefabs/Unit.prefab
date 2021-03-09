@@ -610,9 +610,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   agent: {fileID: 2791762300540212421}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 1024
   targeter: {fileID: 3212081467042436125}
   chaseRange: 30
 --- !u!114 &-7407240229316357453
@@ -664,7 +661,7 @@ MonoBehaviour:
   attackRange: 25
   attackDamage: 25
   rotationSpeed: 75
-  projectilePrefab: {fileID: 1021418598387821705, guid: 53fd4c0960113b44684766d6169cac62,
+  projectilePrefab: {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4,
     type: 3}
 --- !u!114 &4312478932732592251
 MonoBehaviour:
