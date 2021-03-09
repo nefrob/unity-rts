@@ -10,6 +10,7 @@ public class Unit: Selectable
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private Targeter targeter = null;
     [SerializeField] private Health health = null;
+    [SerializeField] private int price = 100;
 
     public static event Action<Unit> ServerOnUnitSpawn;
     public static event Action<Unit> ServerOnUnitDespawn;
@@ -25,6 +26,11 @@ public class Unit: Selectable
     public Targeter GetTargeter()
     {
         return targeter;
+    }
+
+    public int GetPrice()
+    {
+        return price;
     }
 
     #region server
