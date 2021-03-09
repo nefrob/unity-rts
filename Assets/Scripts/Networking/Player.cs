@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class Player : NetworkBehaviour
 {
     [SerializeField] private Building[] availableBuildings = new Building[0];
+
+    [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
+    private int resources = 500;
+
+    public event Action<int> ClientOnResourcesUpdated;
 
     private List<Unit> units = new List<Unit>();
     private List<Building> buildings = new List<Building>();
@@ -20,6 +26,10 @@ public class Player : NetworkBehaviour
         return buildings;
     }
 
+    public int GetResources()
+    {
+        return resources;
+    }
 
     #region server
 
@@ -39,6 +49,12 @@ public class Player : NetworkBehaviour
         Building.ServerOnBuildingSpawn -= ServerHandleBuildingSpawn;
         Building.ServerOnBuildingDespawn -= ServerHandleBuildingDespawn;
 
+    }
+
+    [Server]
+    public void SetResources(int newResources)
+    {
+        resources = newResources;
     }
 
     [Command]
@@ -103,7 +119,6 @@ public class Player : NetworkBehaviour
         buildings.Remove(building);
     }
 
-
     #endregion
 
     #region client
@@ -148,6 +163,11 @@ public class Player : NetworkBehaviour
     private void AuthorityHandleBuildingDespawn(Building building)
     {
         buildings.Remove(building);
+    }
+
+    private void ClientHandleResourcesUpdated(int oldResources, int newResources)
+    {
+        ClientOnResourcesUpdated?.Invoke(newResources);
     }
 
     #endregion
