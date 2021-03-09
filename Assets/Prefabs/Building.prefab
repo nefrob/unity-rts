@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5520409511420155436}
   - component: {fileID: 3775145770640263154}
   - component: {fileID: 5773849871518839785}
+  - component: {fileID: 5323279387871671229}
   m_Layer: 10
   m_Name: Building
   m_TagString: Untagged
@@ -135,6 +136,19 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!65 &5323279387871671229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4811061436784661278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6025794626121792585
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +392,11 @@ PrefabInstance:
     - target: {fileID: 5192275174495444811, guid: 8292f4903ab6c8042b6ebc5806e604ae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415997689247656439, guid: 8292f4903ab6c8042b6ebc5806e604ae,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

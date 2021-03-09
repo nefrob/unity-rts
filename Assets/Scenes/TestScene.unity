@@ -2303,7 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1016af76976cdf246a14ebe29072cde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useKeyBoardMove: 0
+  useKeyBoardMove: 1
   moveSpeed: 30
   rotateSpeed: 50
   zoomSpeed: 20

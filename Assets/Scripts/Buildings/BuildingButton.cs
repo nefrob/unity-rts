@@ -18,6 +18,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private Player player;
     private GameObject buildingPreviewInstance;
     private Renderer buildingRendererInstance;
+    private BoxCollider buildingCollider; 
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         iconImage.sprite = building.GetIcon();
         priceText.text = building.GetPrice().ToString();
+
+        buildingCollider = building.GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -41,7 +44,8 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return; 
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+        if (player.GetResources() < building.GetPrice()) return;
 
         buildingPreviewInstance = Instantiate(building.GetBuildingPreview());
         buildingRendererInstance = buildingPreviewInstance.GetComponentInChildren<Renderer>();
@@ -73,5 +77,8 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             buildingPreviewInstance.SetActive(true);
         }
+
+        Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? Color.green : Color.red;
+        buildingRendererInstance.material.SetColor("_Color", color);
     }
 }

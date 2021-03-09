@@ -49,6 +49,10 @@ MonoBehaviour:
   availableBuildings:
   - {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33, type: 3}
   - {fileID: 7284592331089546825, guid: 9467210a8c814ea43939cb4e30b4c133, type: 3}
+  buildingBlockLayer:
+    serializedVersion: 2
+    m_Bits: 5632
+  buildingRangeLimit: 2
 --- !u!114 &928108955877985001
 MonoBehaviour:
   m_ObjectHideFlags: 0

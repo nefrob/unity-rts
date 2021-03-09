@@ -7,6 +7,8 @@ using System;
 public class Player : NetworkBehaviour
 {
     [SerializeField] private Building[] availableBuildings = new Building[0];
+    [SerializeField] private LayerMask buildingBlockLayer = new LayerMask();
+    [SerializeField] private float buildingRangeLimit = 2.0f;
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
@@ -29,6 +31,29 @@ public class Player : NetworkBehaviour
     public int GetResources()
     {
         return resources;
+    }
+
+    public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
+    {
+        if (Physics.CheckBox(
+                    point + buildingCollider.center,
+                    buildingCollider.size / 2,
+                    Quaternion.identity,
+                    buildingBlockLayer))
+        {
+            return false;
+        }
+
+        foreach (Building building in buildings)
+        {
+            if ((point - building.transform.position).sqrMagnitude
+                <= buildingRangeLimit * buildingRangeLimit)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     #region server
@@ -73,10 +98,17 @@ public class Player : NetworkBehaviour
 
         if (buildingToPlace == null) return;
 
+        if (resources < buildingToPlace.GetPrice()) return;
+
+        BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+        if (!CanPlaceBuilding(buildingCollider, point)) return;
+
         GameObject buildingInstance =
             Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
 
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+
+        SetResources(resources - buildingToPlace.GetPrice());
     }
 
     private void ServerHandleUnitSpawn(Unit unit)
