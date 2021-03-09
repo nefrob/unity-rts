@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Selectable_Char
   - Unit
   layers:
   - Default
@@ -15,15 +14,15 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
   - Ground
+  - World
+  - Building
   - Selection
-  - Vision
+  - Unit
+  - Minimap
+  - FogVision
+  - Projectile
   - Overlay
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

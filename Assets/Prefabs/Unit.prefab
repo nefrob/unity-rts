@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 232740030}
   - component: {fileID: 232740029}
-  m_Layer: 10
+  - component: {fileID: 2106357064878378959}
+  m_Layer: 0
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +60,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2106357064878378959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232740028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df8ba200d0dcc7478f47e95c1d1da90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
 --- !u!1 &1496065026
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +84,7 @@ GameObject:
   - component: {fileID: 1496065027}
   - component: {fileID: 1496065029}
   - component: {fileID: 1496065028}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +159,7 @@ GameObject:
   - component: {fileID: 1578689463}
   - component: {fileID: 1578689465}
   - component: {fileID: 1578689464}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: HealthBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2791762299297876987}
   - component: {fileID: 2791762299297876988}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SelectionSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +318,7 @@ GameObject:
   - component: {fileID: 2791762299910818682}
   - component: {fileID: 2791762299910818681}
   - component: {fileID: 2791762299910818680}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: VisionMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +439,7 @@ GameObject:
   - component: {fileID: 4885107672535497213}
   - component: {fileID: 2791762300540212419}
   - component: {fileID: 8958449022235382233}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Unit
   m_TagString: Unit
   m_Icon: {fileID: 0}
@@ -596,9 +610,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   agent: {fileID: 2791762300540212421}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 1024
   targeter: {fileID: 3212081467042436125}
   chaseRange: 30
 --- !u!114 &-7407240229316357453
@@ -650,7 +661,7 @@ MonoBehaviour:
   attackRange: 25
   attackDamage: 25
   rotationSpeed: 75
-  projectilePrefab: {fileID: 1021418598387821705, guid: 53fd4c0960113b44684766d6169cac62,
+  projectilePrefab: {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4,
     type: 3}
 --- !u!114 &4312478932732592251
 MonoBehaviour:
@@ -726,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985068628335917303}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

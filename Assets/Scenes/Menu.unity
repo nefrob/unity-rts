@@ -275,23 +275,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3771732599273289920, guid: a5c808d15364b2b45b39aff9d882000f,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771732599273289920, guid: a5c808d15364b2b45b39aff9d882000f,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 2766767680596121362, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
-        type: 3}
-    - target: {fileID: 3771732599273289920, guid: a5c808d15364b2b45b39aff9d882000f,
-        type: 3}
-      propertyPath: gameOverManagerPrefab
-      value: 
-      objectReference: {fileID: 9149414034207566172, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
-        type: 3}
     - target: {fileID: 3771732599273289923, guid: a5c808d15364b2b45b39aff9d882000f,
         type: 3}
       propertyPath: m_LocalPosition.x

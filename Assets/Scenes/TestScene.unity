@@ -233,7 +233,7 @@ Projector:
   m_Material: {fileID: 2100000, guid: d6bcf9391a7560e448cc2f2844647966, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 2080
+    m_Bits: 5152
 --- !u!1 &110432240
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 243127306}
   - component: {fileID: 243127305}
   - component: {fileID: 243127304}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 291416215}
   - component: {fileID: 291416214}
   - component: {fileID: 291416213}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 521843838}
   - component: {fileID: 521843837}
   - component: {fileID: 521843836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 581871433}
   - component: {fileID: 581871432}
   - component: {fileID: 581871431}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ Camera:
   m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 65536
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1030,7 +1030,7 @@ Camera:
   m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: ef2a439b84985ee48a7712adc47a9d14, type: 2}
   m_TargetDisplay: 0
@@ -1150,8 +1150,8 @@ MonoBehaviour:
   displayTime: 1
   groundMask:
     serializedVersion: 2
-    m_Bits: 512
-  cam: {fileID: 709652371}
+    m_Bits: 256
+  overlayCam: {fileID: 709652371}
 --- !u!4 &970037795
 Transform:
   m_ObjectHideFlags: 0
@@ -1229,7 +1229,7 @@ Camera:
   m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 65ab2c6ba614cd54591f615f0a76b855, type: 2}
   m_TargetDisplay: 0
@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 1037907242}
   - component: {fileID: 1037907241}
   - component: {fileID: 1037907240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 1066442170}
   - component: {fileID: 1066442169}
   - component: {fileID: 1066442168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1557,7 @@ Projector:
   m_Material: {fileID: 2100000, guid: 658ae52697103994dbb58f52e75350b1, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 2080
+    m_Bits: 5152
 --- !u!1001 &1138232473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1786,7 +1786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252268909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 974840178}
@@ -1822,7 +1822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256558498}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1868,7 +1868,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 48951
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1908,7 +1908,7 @@ GameObject:
   - component: {fileID: 1343298845}
   - component: {fileID: 1343298844}
   - component: {fileID: 1343298843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathingObstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,15 +2159,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1016af76976cdf246a14ebe29072cde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useKeyBoardMove: 1
-  moveSpeed: 50
-  edgeMoveSpeed: 250
+  useKeyBoardMove: 0
+  moveSpeed: 30
   rotateSpeed: 50
   zoomSpeed: 20
   maxZoom: 250
   minZoom: 75
   moveBoarder: 50
   camTransform: {fileID: 1434807824}
+  mapPlane: {fileID: 291416216}
+  mapCameraEdgeBorder: 20
 --- !u!1 &1883659503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2182,7 @@ GameObject:
   - component: {fileID: 1883659506}
   - component: {fileID: 1883659505}
   - component: {fileID: 1883659508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DynamicObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2323,6 +2324,7 @@ GameObject:
   - component: {fileID: 2087959725}
   - component: {fileID: 2087959727}
   - component: {fileID: 2087959726}
+  - component: {fileID: 2087959728}
   m_Layer: 12
   m_Name: WorldCanvas
   m_TagString: Untagged
@@ -2393,6 +2395,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2087959728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087959724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df8ba200d0dcc7478f47e95c1d1da90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 709652370}
 --- !u!1001 &3756963416861033050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2404,6 +2419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnitSelectionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756963418503496620, guid: 71a38513387238343ae58fc1c13bb71b,
+        type: 3}
+      propertyPath: selectionMask.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 3756963418503496622, guid: 71a38513387238343ae58fc1c13bb71b,
         type: 3}
@@ -2463,7 +2483,7 @@ PrefabInstance:
     - target: {fileID: 3756963418503496623, guid: 71a38513387238343ae58fc1c13bb71b,
         type: 3}
       propertyPath: targetMask.m_Bits
-      value: 1536
+      value: 5376
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a38513387238343ae58fc1c13bb71b, type: 3}
