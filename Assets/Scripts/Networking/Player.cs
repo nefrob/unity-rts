@@ -13,7 +13,15 @@ public class Player : NetworkBehaviour
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
 
+    [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
+    private bool isPartyOwner = false;
+
+    [SyncVar(hook = nameof(ClientHandleDisplayNameUpdated))]
+    private string displayName;
+
     public event Action<int> ClientOnResourcesUpdated;
+    public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
+    public static event Action ClientOnInfoUpdated;
 
     private Color teamColor = new Color();
     private List<Unit> units = new List<Unit>();
@@ -37,6 +45,16 @@ public class Player : NetworkBehaviour
     public Color GetTeamColor()
     {
         return teamColor;
+    }
+
+    public bool GetIsPartyOwner()
+    {
+        return isPartyOwner;
+    }
+
+    public string GetDisplayName()
+    {
+        return displayName;
     }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
@@ -71,6 +89,7 @@ public class Player : NetworkBehaviour
         Building.ServerOnBuildingSpawn += ServerHandleBuildingSpawn;
         Building.ServerOnBuildingDespawn += ServerHandleBuildingDespawn;
 
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnStopServer()
@@ -94,6 +113,17 @@ public class Player : NetworkBehaviour
         teamColor = newTeamColor;
     }
 
+    [Server]
+    public void SetPartyOwner(bool state)
+    {
+        isPartyOwner = state;
+    }
+
+    [Server]
+    public void SetDisplayName(string displayName)
+    {
+        this.displayName = displayName;
+    }
 
     [Command]
     public void CmdTryPlaceBuilding(int buildingId, Vector3 point)
@@ -168,6 +198,15 @@ public class Player : NetworkBehaviour
         buildings.Remove(building);
     }
 
+    [Command]
+    public void CmdStartGame()
+    {
+        if (!isPartyOwner) return;
+
+        ((RTSNetworkManager)NetworkManager.singleton).StartGame();
+    }
+
+
     #endregion
 
     #region client
@@ -180,18 +219,31 @@ public class Player : NetworkBehaviour
         Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
         Building.AuthorityOnBuildingSpawn += AuthorityHandleBuildingSpawn;
         Building.AuthorityOnBuildingDespawn += AuthorityHandleBuildingDespawn;
+    }
 
+     public override void OnStartClient()
+    {
+        if (NetworkServer.active) return;
+
+        DontDestroyOnLoad(gameObject);
+
+        ((RTSNetworkManager) NetworkManager.singleton).Players.Add(this);
     }
 
     public override void OnStopClient()
     {
-        if (!isClientOnly || !hasAuthority) return;
+        ClientOnInfoUpdated?.Invoke();
+
+        if (!isClientOnly) return;
+
+        ((RTSNetworkManager) NetworkManager.singleton).Players.Remove(this);
+
+        if (!hasAuthority) return;
 
         Unit.AuthoryOnUnitSpawn -= AuthoryHandleUnitSpawn;
         Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
         Building.AuthorityOnBuildingSpawn -= AuthorityHandleBuildingSpawn;
         Building.AuthorityOnBuildingDespawn -= AuthorityHandleBuildingDespawn;
-
     }
 
     private void AuthoryHandleUnitSpawn(Unit unit)
@@ -217,6 +269,17 @@ public class Player : NetworkBehaviour
     private void ClientHandleResourcesUpdated(int oldResources, int newResources)
     {
         ClientOnResourcesUpdated?.Invoke(newResources);
+    }
+
+    private void AuthorityHandlePartyOwnerStateUpdated(bool oldState, bool newState)
+    {
+        if (!hasAuthority) return;
+        AuthorityOnPartyOwnerStateUpdated?.Invoke(newState);
+    }
+
+    private void ClientHandleDisplayNameUpdated(string oldDisplayName, string newDisplayName)
+    {
+        ClientOnInfoUpdated?.Invoke();
     }
 
     #endregion
