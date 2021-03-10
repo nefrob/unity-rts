@@ -19,7 +19,7 @@ public class RangedAttack : Attack
         GameObject projectileInstance = Instantiate(projectilePrefab,
             attackOrigin.position, projectileRot);
 
-        projectileInstance.GetComponent<Projectile>().SetInitialVelocity(ComputeLaunchVelocity());
+        projectileInstance.GetComponent<Projectile>().SetVelocity(ComputeLaunchVelocity());
 
         NetworkServer.Spawn(projectileInstance, connectionToClient); 
     }

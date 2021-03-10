@@ -29,6 +29,11 @@ public class CameraController : MonoBehaviour
     private Rect upRect;
     private Rect downRect;
 
+    private Controls controls;
+    private Vector2 previousMoveInput;
+    private float previousScrollInput;
+    private float previousRotateInput;
+
     private Vector3 mapMinBounds;
     private Vector3 mapMaxBounds;
 
@@ -50,6 +55,15 @@ public class CameraController : MonoBehaviour
         mapMinBounds.z += mapCameraEdgeBorder;
         mapMaxBounds.x -= mapCameraEdgeBorder;
         mapMaxBounds.z -= mapCameraEdgeBorder;
+
+        controls = new Controls();
+        controls.Player.MoveCamera.performed += SetMoveInput;
+        controls.Player.MoveCamera.canceled += SetMoveInput;
+        controls.Player.ZoomCamera.performed += SetScrollInput;
+        controls.Player.ZoomCamera.canceled += SetScrollInput;
+        controls.Player.RotateCamera.performed += SetRotateInput;
+        controls.Player.RotateCamera.canceled += SetRotateInput;
+        controls.Enable();
     }
 
     void Update()
@@ -59,6 +73,8 @@ public class CameraController : MonoBehaviour
             transform.position = followTransform.position;
         } else 
         {
+            if (!Application.isFocused) return;
+
             Move();
             Zoom();
             Rotate();
@@ -78,8 +94,8 @@ public class CameraController : MonoBehaviour
         int hor = 0;
         if (useKeyBoardMove)
         {
-            vert = Keyboard.current.wKey.isPressed ? 1 : (Keyboard.current.sKey.isPressed ? -1 : 0);
-            hor = Keyboard.current.dKey.isPressed ? 1 : (Keyboard.current.aKey.isPressed ? -1 : 0);
+            vert = (int) previousMoveInput.y;
+            hor = (int) previousMoveInput.x;
         } else
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
@@ -94,29 +110,15 @@ public class CameraController : MonoBehaviour
         movePos += transform.right * hor * moveSpeed * Time.deltaTime;
 
         // Clamp camera movement at screen edges
-        if (movePos.x > mapMaxBounds.x) 
-        {
-            movePos.x = mapMaxBounds.x;
-        }
-        if (movePos.z > mapMaxBounds.z) 
-        {
-            movePos.z = mapMaxBounds.z;
-        }
-        if (movePos.x < mapMinBounds.x)
-        {
-            movePos.x = mapMinBounds.x;
-        }
-        if (movePos.z < mapMinBounds.z)
-        {
-            movePos.z = mapMinBounds.z;
-        }
+        movePos.x = Mathf.Clamp(movePos.x, mapMinBounds.x, mapMaxBounds.x);
+        movePos.z = Mathf.Clamp(movePos.z, mapMinBounds.z, mapMaxBounds.z);
 
         transform.position = movePos;
     }
 
     private void Zoom()
     {
-        float scrollInput = Mouse.current.scroll.y.ReadValue();
+        float scrollInput = previousScrollInput;
         if (scrollInput == 0) return;
 
         float dist = Vector3.Distance(transform.position, 
@@ -149,15 +151,11 @@ public class CameraController : MonoBehaviour
 
     private void Rotate()
     {
+        float rotateInput = previousRotateInput;
+        if (rotateInput == 0) return;
+
         Quaternion newRot = transform.rotation;
-        if (Keyboard.current.qKey.isPressed)
-        {
-            newRot *= Quaternion.Euler(Vector3.up * rotateSpeed);
-        }
-        if (Keyboard.current.eKey.isPressed)
-        {
-            newRot *= Quaternion.Euler(Vector3.up * -rotateSpeed);
-        }
+        newRot *= Quaternion.Euler(Vector3.up * rotateInput * rotateSpeed);
 
         transform.rotation = Quaternion.Lerp(transform.rotation,
             newRot, Time.deltaTime);
@@ -167,5 +165,20 @@ public class CameraController : MonoBehaviour
     {
         followTransform = target;
         transform.position = followTransform.position;
+    }
+
+    private void SetMoveInput(InputAction.CallbackContext ctx)
+    {
+        previousMoveInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void SetScrollInput(InputAction.CallbackContext ctx)
+    {
+        previousScrollInput = ctx.ReadValue<float>();
+    }
+
+    private void SetRotateInput(InputAction.CallbackContext ctx)
+    {
+        previousRotateInput = ctx.ReadValue<float>();
     }
 }
