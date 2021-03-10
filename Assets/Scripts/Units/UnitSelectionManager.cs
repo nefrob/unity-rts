@@ -19,6 +19,7 @@ public class UnitSelectionManager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        player = NetworkClient.connection.identity.GetComponent<Player>();
         Unit.AuthoryOnUnitDespawn += AuthorityHandleUnitDespawn;
         GameOverManager.ClientOnGameOver += ClientHandleGameOver;
     }
@@ -31,12 +32,6 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        // TODO: fix issue player not yet initialized, broken if only client!!!
-        if (player == null)
-        {
-            player = NetworkClient.connection.identity.GetComponent<Player>();
-        }
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (!Keyboard.current.shiftKey.isPressed) 

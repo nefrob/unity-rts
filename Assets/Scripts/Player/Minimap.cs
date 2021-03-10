@@ -7,7 +7,7 @@ using Mirror;
 
 public class Minimap : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    [SerializeField] private Transform playerCameraTransform;
+    [SerializeField] private Transform playerCameraTransform = null;
     [SerializeField] private RectTransform minimapRect = null;
     [SerializeField] private Transform mapPlane = null;
 

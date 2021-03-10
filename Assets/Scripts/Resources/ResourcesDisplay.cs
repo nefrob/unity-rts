@@ -10,20 +10,13 @@ public class ResourcesDisplay : MonoBehaviour
 
     private Player player;
 
-    private void Update()
+    private void Start()
     {
-        if (player == null)
-        {
-            player = NetworkClient.connection.identity.GetComponent<Player>();
-
-            if (player != null)
-            {
-                ClientHandleResourcesUpdated(player.GetResources());
-                player.ClientOnResourcesUpdated += ClientHandleResourcesUpdated;
-            }
-        }
+        player = NetworkClient.connection.identity.GetComponent<Player>();
+        ClientHandleResourcesUpdated(player.GetResources());
+        player.ClientOnResourcesUpdated += ClientHandleResourcesUpdated;
     }
-    
+
     private void OnDestroy()
     {
         player.ClientOnResourcesUpdated -= ClientHandleResourcesUpdated;
