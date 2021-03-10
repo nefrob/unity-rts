@@ -15,6 +15,7 @@ public class Player : NetworkBehaviour
 
     public event Action<int> ClientOnResourcesUpdated;
 
+    private Color teamColor = new Color();
     private List<Unit> units = new List<Unit>();
     private List<Building> buildings = new List<Building>();
 
@@ -31,6 +32,11 @@ public class Player : NetworkBehaviour
     public int GetResources()
     {
         return resources;
+    }
+
+    public Color GetTeamColor()
+    {
+        return teamColor;
     }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
@@ -81,6 +87,13 @@ public class Player : NetworkBehaviour
     {
         resources = newResources;
     }
+
+    [Server]
+    public void SetTeamColor(Color newTeamColor)
+    {
+        teamColor = newTeamColor;
+    }
+
 
     [Command]
     public void CmdTryPlaceBuilding(int buildingId, Vector3 point)
