@@ -124,6 +124,7 @@ public class Player : NetworkBehaviour
         SetResources(resources - buildingToPlace.GetPrice());
     }
 
+    [Server]
     private void ServerHandleUnitSpawn(Unit unit)
     {
         if (unit.connectionToClient.connectionId != connectionToClient.connectionId)
@@ -134,6 +135,7 @@ public class Player : NetworkBehaviour
         units.Add(unit);
     }
 
+    [Server]
     private void ServerHandleUnitDespawn(Unit unit)
     {
         if (unit.connectionToClient.connectionId != connectionToClient.connectionId)
@@ -144,6 +146,7 @@ public class Player : NetworkBehaviour
         units.Remove(unit);
     }
 
+    [Server]
     private void ServerHandleBuildingSpawn(Building building)
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) 
@@ -154,6 +157,7 @@ public class Player : NetworkBehaviour
         buildings.Add(building);
     }
 
+    [Server]
     private void ServerHandleBuildingDespawn(Building building)
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) 

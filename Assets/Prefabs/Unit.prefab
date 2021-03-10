@@ -666,7 +666,7 @@ MonoBehaviour:
   rotationSpeed: 75
   projectilePrefab: {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4,
     type: 3}
-  launchAngle: 30
+  launchAngle: 45
 --- !u!114 &4312478932732592251
 MonoBehaviour:
   m_ObjectHideFlags: 0

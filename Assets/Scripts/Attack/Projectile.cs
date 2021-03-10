@@ -21,14 +21,16 @@ public class Projectile : NetworkBehaviour
     {
         transform.rotation = Quaternion.LookRotation(rb.velocity);
 
-        //? object tracking for moving accuracy?
-        // Vector3 targetPos = Vector3.zero;
-        // var dir = targetPos - transform.position;
-        // float adjustStrength = 0.15f;
-        // float magnitude = velocity.magnitude;
+        // TODO: object tracking for moving accuracy?
+        // var dir = target.position - transform.position;
+        // dir.y = 0;
+        // float adjustStrength = 1f;
+        // Vector3 v = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        // float magnitude = v.magnitude;
         // Vector3 newVelocity = (adjustStrength * dir.normalized + (1 - adjustStrength) 
-        //     * velocity.normalized) * magnitude;
-        // velocity = newVelocity;
+        //     * v.normalized) * magnitude;
+        // newVelocity.y = rb.velocity.y;
+        // rb.AddForce(newVelocity, ForceMode.VelocityChange);
     }
 
     #region server
