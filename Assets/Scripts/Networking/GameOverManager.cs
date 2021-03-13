@@ -35,10 +35,9 @@ public class GameOverManager : NetworkBehaviour
     private void ServerHandleBaseDespawn(Base b)
     {
         bases.Remove(b);
-        if (bases.Count != 1) { return; }
+        if (bases.Count != 1) return;
 
-        int playerId = bases[0].connectionToClient.connectionId;
-
+        int playerId = bases[0].connectionToClient.connectionId; 
         RpcGameOver($"Player {playerId}");
 
         ServerOnGameOver?.Invoke();

@@ -20,17 +20,6 @@ public class Projectile : NetworkBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.LookRotation(rb.velocity);
-
-        // TODO: object tracking for moving accuracy?
-        // var dir = target.position - transform.position;
-        // dir.y = 0;
-        // float adjustStrength = 1f;
-        // Vector3 v = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        // float magnitude = v.magnitude;
-        // Vector3 newVelocity = (adjustStrength * dir.normalized + (1 - adjustStrength) 
-        //     * v.normalized) * magnitude;
-        // newVelocity.y = rb.velocity.y;
-        // rb.AddForce(newVelocity, ForceMode.VelocityChange);
     }
 
     #region server
@@ -51,7 +40,7 @@ public class Projectile : NetworkBehaviour
     {
         if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity identity))
         {
-            if (identity.connectionToClient == connectionToClient) return; // self hit
+            if (identity.connectionToClient == connectionToClient) return; // self hit, ignore
         }
         
         if (other.TryGetComponent<Health>(out Health health))

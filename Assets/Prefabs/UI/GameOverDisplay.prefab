@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df33a374b4435564c8a9829151784d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverDisplayParent: {fileID: 2385801375874658037}
+  displayParent: {fileID: 2385801375874658037}
   winnerNameText: {fileID: 3621284246649619820}
 --- !u!1 &8936419694262665306
 GameObject:

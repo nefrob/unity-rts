@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
@@ -202,7 +201,6 @@ public class Player : NetworkBehaviour
     public void CmdStartGame()
     {
         if (!isPartyOwner) return;
-
         ((RTSNetworkManager)NetworkManager.singleton).StartGame();
     }
 
@@ -215,8 +213,8 @@ public class Player : NetworkBehaviour
     {
         if (NetworkServer.active) return;
 
-        Unit.AuthoryOnUnitSpawn -= AuthoryHandleUnitSpawn;
-        Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
+        Unit.AuthoryOnUnitSpawn += AuthoryHandleUnitSpawn;
+        Unit.AuthoryOnUnitDespawn += AuthoryHandleUnitDespawn;
         Building.AuthorityOnBuildingSpawn += AuthorityHandleBuildingSpawn;
         Building.AuthorityOnBuildingDespawn += AuthorityHandleBuildingDespawn;
     }

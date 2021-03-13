@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
-using UnityEngine.InputSystem;
 
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Targeter targeter = null;
-    [SerializeField] float chaseRange = 10.0f;
+    [SerializeField] private float chaseRange = 10.0f;
 
     #region server
 
@@ -22,7 +19,6 @@ public class UnitMovement : NetworkBehaviour
     {
         GameOverManager.ServerOnGameOver -= ServerHandleGameOver;
     }
-
 
     [ServerCallback]
     private void Update()
@@ -71,9 +67,8 @@ public class UnitMovement : NetworkBehaviour
     [Server]
     private void ServerHandleGameOver()
     {
-        agent.ResetPath();
+        agent.ResetPath(); // stop unit movement on game over
     }
-
 
     #endregion
 }

@@ -57,7 +57,7 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 7976162316551200718}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -76,6 +76,9 @@ MonoBehaviour:
     type: 3}
   gameOverManagerPrefab: {fileID: 9149414034207566172, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
     type: 3}
+  teamColors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.42460012, b: 1, a: 0}
 --- !u!114 &3771732599273289922
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Mirror;
 
 public class GameOverDisplay : MonoBehaviour
 {
-    [SerializeField] private GameObject gameOverDisplayParent = null;
+    [SerializeField] private GameObject displayParent = null;
     [SerializeField] private TMP_Text winnerNameText = null;
 
     private void Start()
@@ -33,7 +31,6 @@ public class GameOverDisplay : MonoBehaviour
     private void ClientHandleGameOver(string winner)
     {
         winnerNameText.text = $"{winner} Has Won!";
-        gameOverDisplayParent.SetActive(true);
+        displayParent.SetActive(true);
     }
-
 }

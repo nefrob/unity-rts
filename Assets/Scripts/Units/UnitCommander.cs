@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UnitCommander : MonoBehaviour
 {
     [SerializeField] private UnitSelectionManager unitSelectionManager = null;
+    [SerializeField] private LayerMask commandMask = new LayerMask();
 
-    [SerializeField] private LayerMask targetMask = new LayerMask();
-
-    private Camera cam;
+    private Camera cam; // main camera
 
     private void Start()
     {
@@ -22,14 +19,13 @@ public class UnitCommander : MonoBehaviour
         GameOverManager.ClientOnGameOver -= ClientHandleGameOver;
     }
 
-
     private void Update()
     {
         if (!Mouse.current.rightButton.wasPressedThisFrame) return;
         
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask)) return;
+        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, commandMask)) return;
 
         if (hit.collider.TryGetComponent<Targetable>(out Targetable target))
         {
@@ -66,7 +62,6 @@ public class UnitCommander : MonoBehaviour
 
     private void ClientHandleGameOver(string winnerName)
     {
-        enabled = false;
+        enabled = false; // disable commands
     }
-
 }

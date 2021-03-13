@@ -9,8 +9,6 @@ public class Attack : NetworkBehaviour
     [SerializeField] protected Transform attackOrigin = null;
     [SerializeField] protected float attackSpeed = 1.0f;
     [SerializeField] protected float attackRange = 1.0f;
-    [SerializeField] protected float attackDamage = 10.0f;
-
     [SerializeField] protected float rotationSpeed = 10.0f;
 
     protected float lastAttackTime;

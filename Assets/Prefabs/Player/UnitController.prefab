@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3756963418354302497}
   - component: {fileID: 3756963418354302496}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: SelectionBoxCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3756963418503496620}
   - component: {fileID: 3756963418503496623}
   m_Layer: 0
-  m_Name: UnitSelectionManager
+  m_Name: UnitController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   selectionBox: {fileID: 3756963418766945113}
   selectionMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
 --- !u!114 &3756963418503496623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSelectionManager: {fileID: 3756963418503496620}
-  targetMask:
+  commandMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 7424
 --- !u!1 &3756963418766945112
 GameObject:
   m_ObjectHideFlags: 0

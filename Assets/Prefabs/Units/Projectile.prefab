@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5071946168381655507}
   - component: {fileID: 4029835915551043874}
   - component: {fileID: 5801009357197236066}
-  - component: {fileID: 6044621497255607751}
   - component: {fileID: 2265169293467344970}
+  - component: {fileID: 6044621497255607751}
   - component: {fileID: 5955224777894273969}
   m_Layer: 15
   m_Name: Projectile
@@ -69,6 +69,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &2265169293467344970
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616559546234461254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6044621497255607751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,22 +98,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 5801009357197236066}
-  lifetime: 3
-  attackDamage: 20
---- !u!136 &2265169293467344970
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3616559546234461254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  lifetime: 5
+  attackDamage: 10
 --- !u!114 &5955224777894273969
 MonoBehaviour:
   m_ObjectHideFlags: 0
