@@ -203,7 +203,6 @@ public class Player : NetworkBehaviour
         ((RTSNetworkManager)NetworkManager.singleton).StartGame();
     }
 
-
     #endregion
 
     #region client

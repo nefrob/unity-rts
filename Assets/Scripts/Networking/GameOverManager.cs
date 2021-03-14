@@ -34,12 +34,14 @@ public class GameOverManager : NetworkBehaviour
     [Server]
     private void ServerHandleBaseDespawn(Base b)
     {
+        Debug.Log($"on base despawn, {bases.Count}");
         bases.Remove(b);
         if (bases.Count != 1) return;
 
         int playerId = bases[0].connectionToClient.connectionId; 
         RpcGameOver($"Player {playerId}");
 
+        Debug.Log("server on game over");
         ServerOnGameOver?.Invoke();
     }
 
@@ -50,6 +52,7 @@ public class GameOverManager : NetworkBehaviour
     [ClientRpc]
     private void RpcGameOver(string winner)
     {
+        Debug.Log("rpc game over");
         ClientOnGameOver?.Invoke(winner);
     }
 

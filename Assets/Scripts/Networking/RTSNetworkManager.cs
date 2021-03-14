@@ -29,6 +29,7 @@ public class RTSNetworkManager : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        if (Players.Count == 0) return;
         Player player = conn.identity.GetComponent<Player>();
         Players.Remove(player);
         base.OnServerDisconnect(conn);

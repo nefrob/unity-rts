@@ -22,6 +22,7 @@ public class Base : NetworkBehaviour
 
     public override void OnStopServer()
     {
+        Debug.Log("server on base despawn");
         ServerOnBaseDespawn?.Invoke(this);
         health.ServerOnDie -= ServerHandleDie;
     }
@@ -29,7 +30,9 @@ public class Base : NetworkBehaviour
     [Server]
     private void ServerHandleDie()
     {
+        Debug.Log("server handle die");
         ServerOnPlayerDie?.Invoke(connectionToClient.connectionId);
+        Debug.Log("destroy base");
         NetworkServer.Destroy(gameObject);
     }
 

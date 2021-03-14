@@ -99,7 +99,9 @@ MonoBehaviour:
   syncInterval: 0.1
   rb: {fileID: 5801009357197236066}
   lifetime: 5
-  attackDamage: 10
+  attackDamage: 500
+  lookVelocityDir: 1
+  deleteAfterTrigger: 1
 --- !u!114 &5955224777894273969
 MonoBehaviour:
   m_ObjectHideFlags: 0
