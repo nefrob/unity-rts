@@ -6,7 +6,8 @@ public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Targeter targeter = null;
-    [SerializeField] private float chaseRange = 10.0f;
+    [SerializeField] private float minChaseRange = 5.0f;
+    [SerializeField] private float maxChaseRange = 10.0f;
 
     #region server
 
@@ -26,9 +27,9 @@ public class UnitMovement : NetworkBehaviour
         Targetable target = targeter.GetTarget();
         if (target != null)
         {
-            // TODO: fix chase range so min and max
-            if ((target.transform.position - transform.position).sqrMagnitude
-                <= chaseRange * chaseRange)
+            float distSquared = (target.transform.position - transform.position).sqrMagnitude;
+            if (distSquared > minChaseRange * minChaseRange 
+                && distSquared < maxChaseRange * maxChaseRange)
             {
                 agent.SetDestination(target.transform.position);
             } else if (agent.hasPath)
@@ -68,7 +69,7 @@ public class UnitMovement : NetworkBehaviour
     [Server]
     private void ServerHandleGameOver()
     {
-        agent.ResetPath(); // stop unit movement on game over
+        if (agent.isOnNavMesh && agent.hasPath) agent.ResetPath();
     }
 
     #endregion

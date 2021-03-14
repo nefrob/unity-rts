@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class UnitCommander : MonoBehaviour
 {
-    [SerializeField] private UnitSelectionManager unitSelectionManager = null;
     [SerializeField] private SelectionManager selectionManager = null;
     [SerializeField] private LayerMask commandMask = new LayerMask();
 

@@ -40,14 +40,13 @@ public class Unit: Selectable
 
     public override void OnStopServer()
     {
-        ServerOnUnitDespawn?.Invoke(this);
         health.ServerOnDie -= ServerHandleDie;
+        ServerOnUnitDespawn?.Invoke(this);
     }
 
     [Server]
     private void ServerHandleDie()
     {
-        Debug.Log("unit should die now");
         NetworkServer.Destroy(gameObject);
     }
 

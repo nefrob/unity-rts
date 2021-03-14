@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3771732599273289923}
   - component: {fileID: 3771732599273289920}
   - component: {fileID: 3771732599273289922}
-  - component: {fileID: 3771732599273289921}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -69,10 +68,11 @@ MonoBehaviour:
   - {fileID: 2766767680596121362, guid: d6dfd1df8ea4a074699a7a6a6d647d2b, type: 3}
   - {fileID: 7728229668656188283, guid: 9467210a8c814ea43939cb4e30b4c133, type: 3}
   - {fileID: 8628266978385240160, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7, type: 3}
-  - {fileID: 4074682541946315870, guid: 61579b3a4cf9fff468282d28b3051c97, type: 3}
   - {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4, type: 3}
   - {fileID: 1580786000242137553, guid: ddc526f83c7e6a74cba3da5bbf0188e6, type: 3}
   - {fileID: 1645472506979792740, guid: ec9077fd65180d5499b2bfb1035132ba, type: 3}
+  - {fileID: 4774055496505006208, guid: 7b271c7a6237dc54ab71ea0cc897b64a, type: 3}
+  - {fileID: 3174429054535094278, guid: 7c37dc6ce27fbcc44a5c827612b051a0, type: 3}
   unitBasePrefab: {fileID: 7728229668656188283, guid: b8c196938e9a23649b1f8df175dd0d48,
     type: 3}
   gameOverManagerPrefab: {fileID: 9149414034207566172, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
@@ -103,18 +103,3 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &3771732599273289921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3771732599273289924}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0

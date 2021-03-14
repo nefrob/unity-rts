@@ -18,7 +18,7 @@ MonoBehaviour:
   attackOrigin: {fileID: 5865450243617683844}
   attackSpeed: 1
   attackRange: 10
-  rotationSpeed: 20
+  rotationSpeed: 50
   projectilePrefab: {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4,
     type: 3}
   launchAngle: 30
@@ -121,6 +121,16 @@ PrefabInstance:
     - target: {fileID: 7836959976127610854, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: chaseRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836959976127610854, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: minChaseRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836959976127610854, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: maxChaseRange
       value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []

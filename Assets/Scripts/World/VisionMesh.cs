@@ -17,6 +17,7 @@ public class VisionMesh : MonoBehaviour
         visionMesh = new Mesh();
         GenerateVisionMesh();
     }
+
     private void GenerateVisionMesh(int points = 10)
     {
         List<Vector3> verts = new List<Vector3> { };

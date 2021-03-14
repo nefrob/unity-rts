@@ -14,17 +14,31 @@ public class Selectable : NetworkBehaviour
     [SerializeField] protected UnityEvent onDeselected = null;
     [SerializeField] protected SelectType selectableType = SelectType.UNIT;
 
+    private bool isSelected;
+
     public SelectType GetSelectableType()
     {
         return selectableType;
     }
 
+    public bool GetIsSelected()
+    {
+        return isSelected;
+    }
+
     #region client
+
+    [ClientCallback]
+    private void Start()
+    {
+        isSelected = false;
+    }
 
     [Client]
     public void Select()
     {
         if (!hasAuthority) return;
+        isSelected = true;
         onSelected?.Invoke();
     }
 
@@ -32,6 +46,7 @@ public class Selectable : NetworkBehaviour
     public void Deselect()
     {
         if (!hasAuthority) return;
+        isSelected = false;
         onDeselected?.Invoke();
     }
 

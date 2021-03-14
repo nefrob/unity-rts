@@ -8,6 +8,8 @@ public class Projectile : NetworkBehaviour
     [SerializeField] private Rigidbody rb = null;
     [SerializeField] private float lifetime = 5.0f;
     [SerializeField] private float attackDamage = 10.0f;
+    [SerializeField] private bool lookVelocityDir = true;
+    [SerializeField] private bool deleteAfterTrigger = true;
 
     [SyncVar(hook = nameof(ClientHandleVelocityUpdated))]
     private Vector3 velocity;
@@ -19,7 +21,7 @@ public class Projectile : NetworkBehaviour
 
     private void Update()
     {
-        transform.rotation = Quaternion.LookRotation(rb.velocity);
+        if (lookVelocityDir) transform.rotation = Quaternion.LookRotation(rb.velocity);
     }
 
     #region server
@@ -48,7 +50,9 @@ public class Projectile : NetworkBehaviour
             health.Damage(attackDamage);
         }
 
-        DestroyProjectile();
+        // Keep visual but stop further triggers
+        if (deleteAfterTrigger) DestroyProjectile();
+        else GetComponent<Collider>().enabled = false;
     }
 
     [Server]

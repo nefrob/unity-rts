@@ -177,10 +177,6 @@ public class Player : NetworkBehaviour
     [Server]
     private void ServerHandleBuildingSpawn(Building building)
     {
-        // FIXME: exceptions on unit/building spawn but not breaking anything
-        // it appers that connectionToClient is null
-        // Debug.Log($"{building.connectionToClient}, {connectionToClient}");
-        // Debug.Log($"{isLocalPlayer}, {isServer}, {isClient}");
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) 
         {
             return; 

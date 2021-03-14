@@ -7,19 +7,23 @@ public class RangedAttack : Attack
 {
     [SerializeField] private GameObject projectilePrefab = null;
     [Range(20.0f, 75.0f)] public float launchAngle = 30.0f; // FIXME: use randomized launch angle? or angle to get over wall?
+    [SerializeField] private bool isMeleeProjectile = false;
     
     #region server
 
     [Server]
     protected override void DoAttack()
     {
-        Quaternion projectileRot = Quaternion.LookRotation(
-            targeter.GetTarget().GetTargetPoint().position - attackOrigin.position);
+        Vector3 lookDir = targeter.GetTarget().GetTargetPoint().position - attackOrigin.position;
+        if (isMeleeProjectile) lookDir.y = 0;
+        Quaternion projectileRot = Quaternion.LookRotation(lookDir);
 
         GameObject projectileInstance = Instantiate(projectilePrefab,
             attackOrigin.position, projectileRot);
 
-        projectileInstance.GetComponent<Projectile>().SetVelocity(ComputeLaunchVelocity());
+        Vector3 velocity = Vector3.zero;
+        if (!isMeleeProjectile) velocity = ComputeLaunchVelocity();
+        projectileInstance.GetComponent<Projectile>().SetVelocity(velocity);
 
         NetworkServer.Spawn(projectileInstance, connectionToClient); 
     }
