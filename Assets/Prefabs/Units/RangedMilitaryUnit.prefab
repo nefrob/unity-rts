@@ -103,11 +103,21 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2791762300540212421, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2791762300540212423, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07c7b1d3de08be242a0846df856cfdee, type: 2}
+    - target: {fileID: 6231268200264864552, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: price
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7836959976127610854, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: chaseRange

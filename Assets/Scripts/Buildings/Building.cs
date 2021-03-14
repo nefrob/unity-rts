@@ -53,6 +53,16 @@ public class Building : NetworkBehaviour
 
     #region client
 
+    [ClientCallback]
+    private void Update()
+    {
+        Vector3 currentPos = transform.position;
+        transform.position = new Vector3(
+            Mathf.Round(currentPos.x),
+            Mathf.Round(currentPos.y), 
+            Mathf.Round(currentPos.z));
+    }
+
     public override void OnStartAuthority()
     {
         AuthorityOnBuildingSpawn?.Invoke(this);

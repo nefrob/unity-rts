@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3153437925326900377}
   - component: {fileID: 2337749634229004426}
   m_Layer: 5
-  m_Name: SpawnerCanvas
+  m_Name: CountDownCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

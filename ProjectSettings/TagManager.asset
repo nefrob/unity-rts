@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Unit
+  - OverlayCam
   layers:
   - Default
   - TransparentFX

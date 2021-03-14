@@ -19,6 +19,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
     [SyncVar(hook = nameof(ClientHandleQueuedUnitsUpdated))]
     private int queuedUnits;
+
     [SyncVar]
     private float unitTimer;
 
@@ -60,7 +61,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
         GameObject unitInstance = Instantiate(
             unitPrefab.gameObject,
-            gatherPoint.position,
+            (gatherPoint.position - transform.position).normalized * 2.0f,
             gatherPoint.rotation);
 
         NetworkServer.Spawn(unitInstance, connectionToClient);
