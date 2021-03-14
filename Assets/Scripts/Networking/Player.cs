@@ -10,7 +10,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private float buildingRangeLimit = 2.0f;
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
-    private int resources = 500;
+    private int resources = 200;
 
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner = false;

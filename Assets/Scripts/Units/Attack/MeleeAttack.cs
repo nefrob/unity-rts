@@ -20,6 +20,7 @@ public class MeleeAttack : Attack
     private void Start()
     {
         remainingActiveTime = 0.0f;
+        syncWeaponActive = false;
     }
 
     [ServerCallback]
@@ -53,7 +54,7 @@ public class MeleeAttack : Attack
     private void ClientHandleWeaponActive(bool oldStatus, bool newStatus)
     {
         weaponObject.SetActive(newStatus);
-        weaponCollider.enabled = newStatus;
+        // weaponCollider.enabled = newStatus; // FIXME: need this?
     }
 
     #endregion
