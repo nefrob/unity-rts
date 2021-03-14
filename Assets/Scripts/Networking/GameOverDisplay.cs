@@ -30,6 +30,7 @@ public class GameOverDisplay : MonoBehaviour
 
     private void ClientHandleGameOver(string winner)
     {
+        Debug.Log("display client handle game over");
         winnerNameText.text = $"{winner} Has Won!";
         displayParent.SetActive(true);
     }

@@ -20,12 +20,12 @@ public class Health : NetworkBehaviour
     {
         curHealth = maxHealth;
 
-        Base.ServerOnPlayerDie += ServerHandlePlayerDie;
+        // Base.ServerOnPlayerDie += ServerHandlePlayerDie;
     }
 
     public override void OnStopServer()
     {
-        Base.ServerOnPlayerDie -= ServerHandlePlayerDie;
+        // Base.ServerOnPlayerDie -= ServerHandlePlayerDie;
     }
 
     [Server]

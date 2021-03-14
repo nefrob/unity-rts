@@ -8,7 +8,7 @@ using System;
 public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitBasePrefab = null;
-    [SerializeField] private GameOverManager gameOverManagerPrefab = null;
+    [SerializeField] private GameObject gameOverManagerPrefab = null;
     [SerializeField] private Color[] teamColors = null;
     [SerializeField] private string gameScene = "TestScene";
 
@@ -65,8 +65,8 @@ public class RTSNetworkManager : NetworkManager
     {
         if (SceneManager.GetActiveScene().name.StartsWith(gameScene))
         {
-            GameOverManager gameOverHandlerInstance = Instantiate(gameOverManagerPrefab);
-            NetworkServer.Spawn(gameOverHandlerInstance.gameObject);
+            GameObject gameOverHandlerInstance = Instantiate(gameOverManagerPrefab);
+            NetworkServer.Spawn(gameOverHandlerInstance);
 
             foreach(Player player in Players)
             {

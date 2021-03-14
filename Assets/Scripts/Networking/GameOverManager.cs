@@ -38,6 +38,8 @@ public class GameOverManager : NetworkBehaviour
         bases.Remove(b);
         if (bases.Count != 1) return;
 
+        Debug.Log("last base alive!");
+
         int playerId = bases[0].connectionToClient.connectionId; 
         RpcGameOver($"Player {playerId}");
 
