@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using System;
 
-public class Building : NetworkBehaviour
+public class Building : Selectable
 {
     [SerializeField] private Sprite icon = null;
     [SerializeField] private int id = -1;
@@ -52,16 +52,6 @@ public class Building : NetworkBehaviour
     #endregion
 
     #region client
-
-    [ClientCallback]
-    private void Update()
-    {
-        Vector3 currentPos = transform.position;
-        transform.position = new Vector3(
-            Mathf.Round(currentPos.x),
-            Mathf.Round(currentPos.y), 
-            Mathf.Round(currentPos.z));
-    }
 
     public override void OnStartAuthority()
     {

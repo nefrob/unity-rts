@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class UnitCommander : MonoBehaviour
 {
     [SerializeField] private UnitSelectionManager unitSelectionManager = null;
+    [SerializeField] private SelectionManager selectionManager = null;
     [SerializeField] private LayerMask commandMask = new LayerMask();
 
     private Camera cam; // main camera
@@ -46,17 +47,23 @@ public class UnitCommander : MonoBehaviour
 
     private void TryMove(Vector3 pos)
     {
-        foreach (Unit u in unitSelectionManager.SelectedUnits)
+        if (selectionManager.GetCurrentSelectionType() !=
+            Selectable.SelectType.UNIT) return;
+
+        foreach (Selectable s in selectionManager.SelectedObjects)
         {
-            u.GetUnitMovement().CmdMoveUnit(pos);
+            ((Unit) s).GetUnitMovement().CmdMoveUnit(pos);
         }
     }
 
     private void TryTarget(Targetable target)
     {
-        foreach (Unit unit in unitSelectionManager.SelectedUnits)
+        if (selectionManager.GetCurrentSelectionType() !=
+            Selectable.SelectType.UNIT) return;
+
+        foreach (Selectable s in selectionManager.SelectedObjects)
         {
-            unit.GetTargeter().CmdSetTarget(target.gameObject);
+            ((Unit) s).GetTargeter().CmdSetTarget(target.gameObject);
         }
     }
 

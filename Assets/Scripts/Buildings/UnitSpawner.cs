@@ -16,6 +16,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
     [SerializeField] private int maxUnitQueue = 5;
     [SerializeField] private float spawnMoveRange = 7f;
     [SerializeField] private float unitSpawnDuration = 5f;
+    [SerializeField] private Building building = null; // TODO: for setting gather point, check if selected
 
     [SyncVar(hook = nameof(ClientHandleQueuedUnitsUpdated))]
     private int queuedUnits;
@@ -61,7 +62,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
         GameObject unitInstance = Instantiate(
             unitPrefab.gameObject,
-            (gatherPoint.position - transform.position).normalized * 2.0f,
+            transform.position + (gatherPoint.position - transform.position).normalized * 2.0f,
             gatherPoint.rotation);
 
         NetworkServer.Spawn(unitInstance, connectionToClient);

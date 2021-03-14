@@ -17,11 +17,12 @@ MonoBehaviour:
   targeter: {fileID: 3648443707500979330}
   attackOrigin: {fileID: 2186408418361736634}
   attackSpeed: 1
-  attackRange: 1
-  rotationSpeed: 20
+  attackRange: 3
+  rotationSpeed: 300
   weaponObject: {fileID: 7987691305835793675}
   weaponCollider: {fileID: 2633669950953484035}
-  weaponDisplayTime: 0.25
+  weaponDisplayTime: 0.5
+  attackDamage: 25
 --- !u!1 &7987691305835793675
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,15 +35,14 @@ GameObject:
   - component: {fileID: 4830456288384605913}
   - component: {fileID: 8772942374018771322}
   - component: {fileID: 2633669950953484035}
-  - component: {fileID: 6173262646763468866}
-  - component: {fileID: 3732951580352444328}
-  m_Layer: 0
+  - component: {fileID: 909029976680707437}
+  m_Layer: 15
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5579409597890212420
 Transform:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ Transform:
   m_GameObject: {fileID: 7987691305835793675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 2}
   m_Children: []
   m_Father: {fileID: 4074682541946315869}
   m_RootOrder: 6
@@ -115,28 +115,11 @@ BoxCollider:
   m_GameObject: {fileID: 7987691305835793675}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6173262646763468866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7987691305835793675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 
-  hasSpawned: 0
---- !u!114 &3732951580352444328
+--- !u!114 &909029976680707437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e62e0a172ebcb4fad93c973a4f1aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  attackDamage: 20
-  trigger: {fileID: 2633669950953484035}
+  meleeAttack: {fileID: 7324186421784233658}
 --- !u!1001 &2175936997543440543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 1974027702366443721, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: colorRenderers.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1974027702366443721, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
@@ -244,6 +224,11 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2791762300540212421, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2791762300540212422, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: m_Enabled
@@ -262,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 7836959976127610854, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: chaseRange
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219f900833777e74eb0dfa280ef8f03a, type: 3}

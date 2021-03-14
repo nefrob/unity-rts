@@ -47,11 +47,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   availableBuildings:
-  - {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33, type: 3}
+  - {fileID: 1992888657321942243, guid: ddc526f83c7e6a74cba3da5bbf0188e6, type: 3}
+  - {fileID: 1769309199817257558, guid: ec9077fd65180d5499b2bfb1035132ba, type: 3}
   - {fileID: 7284592331089546825, guid: 9467210a8c814ea43939cb4e30b4c133, type: 3}
   buildingBlockLayer:
     serializedVersion: 2
-    m_Bits: 5632
+    m_Bits: 7680
   buildingRangeLimit: 2
 --- !u!114 &928108955877985001
 MonoBehaviour:

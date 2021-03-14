@@ -22,7 +22,7 @@ public class Attack : NetworkBehaviour
     }
 
     [ServerCallback]
-    private void Update()
+    protected virtual void Update()
     {
         if (targeter.GetTarget() == null) return;
 

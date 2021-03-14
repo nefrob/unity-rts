@@ -10,7 +10,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private float buildingRangeLimit = 2.0f;
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
-    private int resources = 200;
+    private int resources = 10000;
 
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner = false;
@@ -97,7 +97,6 @@ public class Player : NetworkBehaviour
         Unit.ServerOnUnitDespawn -= ServerHandleUnitDespawn;
         Building.ServerOnBuildingSpawn -= ServerHandleBuildingSpawn;
         Building.ServerOnBuildingDespawn -= ServerHandleBuildingDespawn;
-
     }
 
     [Server]
@@ -178,8 +177,12 @@ public class Player : NetworkBehaviour
     [Server]
     private void ServerHandleBuildingSpawn(Building building)
     {
+        // FIXME: exceptions on unit/building spawn but not breaking anything
+        // it appers that connectionToClient is null
+        // Debug.Log($"{building.connectionToClient}, {connectionToClient}");
+        // Debug.Log($"{isLocalPlayer}, {isServer}, {isClient}");
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) 
-        { 
+        {
             return; 
         }
 

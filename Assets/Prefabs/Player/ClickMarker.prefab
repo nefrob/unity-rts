@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 619929956081526642}
   - component: {fileID: 619929956081526652}
   - component: {fileID: 619929956081526643}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 619929957331163339}
   - component: {fileID: 619929957331163338}
   - component: {fileID: 619929957331163348}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: WorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

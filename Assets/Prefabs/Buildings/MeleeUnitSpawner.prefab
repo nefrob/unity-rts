@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953147539359493662, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4609132494789513962, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,12 +67,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4805363827319913845, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5308800571282842302, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: unitPrefab
       value: 
       objectReference: {fileID: 5209418207907898295, guid: 61579b3a4cf9fff468282d28b3051c97,
         type: 3}
+    - target: {fileID: 6945794674644593624, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: icon
@@ -94,6 +109,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 856ee19415489e548bdaf2749bfced86, type: 2}
+    - target: {fileID: 7989561171942869389, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509483487925545108, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8765316381791153036, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: sceneId

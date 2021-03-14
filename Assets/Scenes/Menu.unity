@@ -504,6 +504,11 @@ PrefabInstance:
       propertyPath: maxConnections
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3771732599273289920, guid: a5c808d15364b2b45b39aff9d882000f,
+        type: 3}
+      propertyPath: transport
+      value: 
+      objectReference: {fileID: 1671452706}
     - target: {fileID: 3771732599273289923, guid: a5c808d15364b2b45b39aff9d882000f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3163,6 +3168,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617816099}
   m_CullTransparentMesh: 0
+--- !u!114 &1671452706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3771732599273289922, guid: a5c808d15364b2b45b39aff9d882000f,
+    type: 3}
+  m_PrefabInstance: {fileID: 130436141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693438394
 GameObject:
   m_ObjectHideFlags: 0

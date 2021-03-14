@@ -43,9 +43,11 @@ public class BuildingButton : MonoBehaviour
             }
 
             Destroy(buildingPreviewInstance);
+            buildingPreviewInstance = null;
         } else if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             Destroy(buildingPreviewInstance);
+            buildingPreviewInstance = null;
         }
     }
 
@@ -64,6 +66,12 @@ public class BuildingButton : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundMask)) return;
 
         buildingPreviewInstance.transform.position = hit.point;
+
+        Vector3 currentPos = hit.point;
+        buildingPreviewInstance.transform.position = new Vector3(
+            Mathf.Round(currentPos.x),
+            currentPos.y, 
+            Mathf.Round(currentPos.z));
 
         if (!buildingPreviewInstance.activeSelf)
         {

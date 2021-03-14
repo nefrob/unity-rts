@@ -31,11 +31,10 @@ public class Health : NetworkBehaviour
     [Server]
     private void ServerHandlePlayerDie(int connectionId)
     {
-        if (connectionToClient.connectionId != connectionId) { return; }
+        if (connectionToClient.connectionId != connectionId) return;
 
         Damage(curHealth);
     }
-
 
     [Server]
     public void Damage(float damage)
@@ -44,6 +43,8 @@ public class Health : NetworkBehaviour
 
         curHealth = Mathf.Max(curHealth - damage, 0);
         if (curHealth > 0) return;
+
+        Debug.Log("health is zero");
 
         ServerOnDie?.Invoke();
     }

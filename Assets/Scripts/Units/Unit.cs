@@ -47,6 +47,7 @@ public class Unit: Selectable
     [Server]
     private void ServerHandleDie()
     {
+        Debug.Log("unit should die now");
         NetworkServer.Destroy(gameObject);
     }
 

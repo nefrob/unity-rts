@@ -90,8 +90,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3756963418503496622}
-  - component: {fileID: 3756963418503496620}
   - component: {fileID: 3756963418503496623}
+  - component: {fileID: 7130610470682961984}
+  - component: {fileID: 6821918552758649729}
   m_Layer: 0
   m_Name: UnitController
   m_TagString: Untagged
@@ -114,22 +115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3756963418503496620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3756963418503496617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa799dd260318fa44881ba3782697298, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionBox: {fileID: 3756963418766945113}
-  selectionMask:
-    serializedVersion: 2
-    m_Bits: 4096
 --- !u!114 &3756963418503496623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,10 +127,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f27bbdcfe07a04bb9c3c96b7f34604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSelectionManager: {fileID: 3756963418503496620}
+  unitSelectionManager: {fileID: 0}
+  selectionManager: {fileID: 7130610470682961984}
   commandMask:
     serializedVersion: 2
     m_Bits: 7424
+--- !u!114 &7130610470682961984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756963418503496617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11585690bd211d644a6ce6d28eae587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  selectionBox: {fileID: 3756963418766945113}
+  selectionMask:
+    serializedVersion: 2
+    m_Bits: 7168
+--- !u!114 &6821918552758649729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756963418503496617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &3756963418766945112
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,8 +26,9 @@ public class UnitMovement : NetworkBehaviour
         Targetable target = targeter.GetTarget();
         if (target != null)
         {
+            // TODO: fix chase range so min and max
             if ((target.transform.position - transform.position).sqrMagnitude
-                > chaseRange * chaseRange)
+                <= chaseRange * chaseRange)
             {
                 agent.SetDestination(target.transform.position);
             } else if (agent.hasPath)

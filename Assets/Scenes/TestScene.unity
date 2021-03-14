@@ -909,7 +909,12 @@ PrefabInstance:
     - target: {fileID: 2508135381168039168, guid: 896a0e9e841da6d44a5b72a2a025bac0,
         type: 3}
       propertyPath: m_Name
-      value: SpawnerBuildingsDisplay
+      value: BuildingUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508135381168039168, guid: 896a0e9e841da6d44a5b72a2a025bac0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4874277203156121968, guid: 896a0e9e841da6d44a5b72a2a025bac0,
         type: 3}
@@ -2499,6 +2504,11 @@ PrefabInstance:
         type: 3}
       propertyPath: targetMask.m_Bits
       value: 5376
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821918552758649729, guid: 71a38513387238343ae58fc1c13bb71b,
+        type: 3}
+      propertyPath: sceneId
+      value: 3960273998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a38513387238343ae58fc1c13bb71b, type: 3}
