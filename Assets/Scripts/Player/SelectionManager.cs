@@ -81,6 +81,7 @@ public class SelectionManager : NetworkBehaviour
                 return;
             }
             
+            // Only select units of the same base type, i.e. not buildings and units
             if (s.GetSelectableType() != curSelectionType) return;
         }
 
@@ -100,7 +101,7 @@ public class SelectionManager : NetworkBehaviour
 
         // FIXME: check if shift still held?
 
-        //? Only units can be box selected
+        // FIXME: Only units can be box selected?
         if (curSelectionType != Selectable.SelectType.UNIT)
         {
             DeselectAll();

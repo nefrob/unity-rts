@@ -7,7 +7,7 @@ public class RangedAttack : Attack
 {
     [SerializeField] private GameObject projectilePrefab = null;
     [Range(20.0f, 75.0f)] public float launchAngle = 30.0f; // FIXME: use randomized launch angle? or angle to get over wall?
-    [SerializeField] private bool isMeleeProjectile = false;
+    [SerializeField] private bool isMeleeProjectile = false; // TODO: make actual melee attack type
     
     #region server
 

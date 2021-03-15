@@ -33,6 +33,11 @@ PrefabInstance:
       propertyPath: isMeleeProjectile
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 473626602239727071, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7,
+        type: 3}
+      propertyPath: attackSpeed
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 538883253228922761, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7,
         type: 3}
       propertyPath: price
@@ -46,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 4450101295234042695, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7,
         type: 3}
       propertyPath: maxChaseRange
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8628266978385240160, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7,
         type: 3}

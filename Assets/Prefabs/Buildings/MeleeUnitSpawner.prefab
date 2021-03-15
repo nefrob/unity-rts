@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4462482749698104493, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4609132494789513962, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,6 +83,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6686273164441360367, guid: 7c37dc6ce27fbcc44a5c827612b051a0,
         type: 3}
+    - target: {fileID: 5308800571282842302, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: maxUnitQueue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308800571282842302, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: unitSpawnDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6945794674644593624, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: m_Center.y
@@ -92,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: price
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}

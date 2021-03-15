@@ -58,7 +58,7 @@ public class Unit: Selectable
     public override void OnStartAuthority()
     {
         AuthoryOnUnitSpawn?.Invoke(this);
-        vision.SetActive(true);
+        vision.SetActive(true); // FIXME: right place for this?
     }
 
     public override void OnStopClient()

@@ -52,7 +52,7 @@ public class Projectile : NetworkBehaviour
 
         // Keep visual but stop further triggers
         if (deleteAfterTrigger) DestroyProjectile();
-        else GetComponent<Collider>().enabled = false;
+        else GetComponent<Collider>().enabled = false; // stop further triggers
     }
 
     [Server]

@@ -75,7 +75,7 @@ MonoBehaviour:
   - {fileID: 3174429054535094278, guid: 7c37dc6ce27fbcc44a5c827612b051a0, type: 3}
   unitBasePrefab: {fileID: 7728229668656188283, guid: b8c196938e9a23649b1f8df175dd0d48,
     type: 3}
-  gameOverManagerPrefab: {fileID: 9149414034207566172, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
+  gameOverManagerPrefab: {fileID: 2766767680596121362, guid: d6dfd1df8ea4a074699a7a6a6d647d2b,
     type: 3}
   teamColors:
   - {r: 1, g: 0, b: 0, a: 0}

@@ -69,7 +69,6 @@ public class UnitMovement : NetworkBehaviour
     [Server]
     private void ServerHandleGameOver()
     {
-        Debug.Log("gameover unit cleanup example");
         if (agent.isOnNavMesh && agent.hasPath) agent.ResetPath();
     }
 

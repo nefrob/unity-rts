@@ -5,6 +5,8 @@ using Mirror;
 
 public class UnitSelectionManager : MonoBehaviour
 {
+    // TODO: delete script
+
     public HashSet<Unit> SelectedUnits { get; } = new HashSet<Unit>();
 
     [SerializeField] private RectTransform selectionBox = null;

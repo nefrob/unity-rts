@@ -34,14 +34,16 @@ public class GameOverManager : NetworkBehaviour
     [Server]
     private void ServerHandleBaseDespawn(Base b)
     {
-        Debug.Log($"on base despawn, {bases.Count}");
         bases.Remove(b);
         if (bases.Count != 1) return;
+
+        // TODO: if you play twice in a row, game over manager exception here.
+        // Not sure why, could be action event handlers aren't cleared properly.
+        // Shouldn't be the case since scene is reloaded in between.
 
         string name = bases[0].connectionToClient.identity.GetComponent<Player>().GetDisplayName();
         RpcGameOver(name);
 
-        Debug.Log("server on game over");
         ServerOnGameOver?.Invoke();
     }
 
@@ -52,7 +54,6 @@ public class GameOverManager : NetworkBehaviour
     [ClientRpc]
     private void RpcGameOver(string winner)
     {
-        Debug.Log("rpc game over");
         ClientOnGameOver?.Invoke(winner);
     }
 

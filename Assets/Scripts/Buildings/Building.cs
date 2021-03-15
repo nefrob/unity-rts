@@ -57,7 +57,7 @@ public class Building : Selectable
     public override void OnStartAuthority()
     {
         AuthorityOnBuildingSpawn?.Invoke(this);
-        vision.SetActive(true);
+        vision.SetActive(true); // FIXME: right place for this?
     }
 
     public override void OnStopClient()

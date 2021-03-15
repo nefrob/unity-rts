@@ -73,6 +73,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 538883253228922761, guid: 4e2f2f6d56c7a0a4dbb028e942f910b7,
         type: 3}
+    - target: {fileID: 5308800571282842302, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: maxUnitQueue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308800571282842302, guid: d843e82348e50d043b0f96d2b9c47d33,
+        type: 3}
+      propertyPath: unitSpawnDuration
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7284592331089546825, guid: d843e82348e50d043b0f96d2b9c47d33,
         type: 3}
       propertyPath: icon

@@ -65,8 +65,8 @@ public class RTSNetworkManager : NetworkManager
     {
         if (SceneManager.GetActiveScene().name.StartsWith(gameScene))
         {
-            GameObject gameOverHandlerInstance = Instantiate(gameOverManagerPrefab);
-            NetworkServer.Spawn(gameOverHandlerInstance);
+            GameObject gameOverManagerInstance = Instantiate(gameOverManagerPrefab);
+            NetworkServer.Spawn(gameOverManagerInstance);
 
             foreach(Player player in Players)
             {

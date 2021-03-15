@@ -20,7 +20,7 @@ public class ResourceGenerator : NetworkBehaviour
         health.ServerOnDie += ServerHandleDie;
         GameOverManager.ServerOnGameOver += ServerHandleGameOver;
     }
-
+    
     public override void OnStopServer()
     {
         health.ServerOnDie -= ServerHandleDie;

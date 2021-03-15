@@ -21,7 +21,8 @@ MonoBehaviour:
   rotationSpeed: 50
   projectilePrefab: {fileID: 3616559546234461254, guid: e6d260065a6b1a747a7900db55dd9bd4,
     type: 3}
-  launchAngle: 30
+  launchAngle: 35
+  isMeleeProjectile: 0
 --- !u!1001 &5837674603717358753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,11 +109,21 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2791762300540212421, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: m_Speed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2791762300540212423, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07c7b1d3de08be242a0846df856cfdee, type: 2}
+    - target: {fileID: 4312478932732592251, guid: 219f900833777e74eb0dfa280ef8f03a,
+        type: 3}
+      propertyPath: maxHealth
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 6231268200264864552, guid: 219f900833777e74eb0dfa280ef8f03a,
         type: 3}
       propertyPath: price
