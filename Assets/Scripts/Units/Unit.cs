@@ -8,6 +8,7 @@ public class Unit: Selectable
     [SerializeField] private Targeter targeter = null;
     [SerializeField] private Health health = null;
     [SerializeField] private int price = 100;
+    [SerializeField] private GameObject vision = null;
 
     public static event Action<Unit> ServerOnUnitSpawn;
     public static event Action<Unit> ServerOnUnitDespawn;
@@ -57,6 +58,7 @@ public class Unit: Selectable
     public override void OnStartAuthority()
     {
         AuthoryOnUnitSpawn?.Invoke(this);
+        vision.SetActive(true);
     }
 
     public override void OnStopClient()

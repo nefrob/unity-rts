@@ -185,11 +185,11 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 60
+  m_OrthographicSize: 50
   m_Material: {fileID: 2100000, guid: d6bcf9391a7560e448cc2f2844647966, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 5152
+    m_Bits: 32
 --- !u!1 &110432240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,11 +1454,11 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 60
+  m_OrthographicSize: 50
   m_Material: {fileID: 2100000, guid: 658ae52697103994dbb58f52e75350b1, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 5152
+    m_Bits: 32
 --- !u!1001 &1138232473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1633,7 +1633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1252268910
 Transform:
   m_ObjectHideFlags: 0

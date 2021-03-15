@@ -10,6 +10,7 @@ public class Building : Selectable
     [SerializeField] private int id = -1;
     [SerializeField] private int price = 100;
     [SerializeField] private GameObject buildingPreview = null;
+    [SerializeField] private GameObject vision = null;
 
     public static event Action<Building> ServerOnBuildingSpawn;
     public static event Action<Building> ServerOnBuildingDespawn;
@@ -56,6 +57,7 @@ public class Building : Selectable
     public override void OnStartAuthority()
     {
         AuthorityOnBuildingSpawn?.Invoke(this);
+        vision.SetActive(true);
     }
 
     public override void OnStopClient()

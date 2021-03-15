@@ -594,10 +594,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  selectableType: 0
   unitMovement: {fileID: 7836959976127610854}
   targeter: {fileID: 3212081467042436125}
   health: {fileID: 4312478932732592251}
   price: 100
+  vision: {fileID: 2791762299910818662}
 --- !u!114 &7836959976127610854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,7 +616,8 @@ MonoBehaviour:
   syncInterval: 0.1
   agent: {fileID: 2791762300540212421}
   targeter: {fileID: 3212081467042436125}
-  chaseRange: 30
+  minChaseRange: 5
+  maxChaseRange: 10
 --- !u!114 &-7407240229316357453
 MonoBehaviour:
   m_ObjectHideFlags: 0
