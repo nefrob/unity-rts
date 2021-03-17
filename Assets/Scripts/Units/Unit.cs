@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
 
 public class Unit: Selectable
 {
@@ -11,6 +8,7 @@ public class Unit: Selectable
     [SerializeField] private Targeter targeter = null;
     [SerializeField] private Health health = null;
     [SerializeField] private int price = 100;
+    [SerializeField] private GameObject vision = null;
 
     public static event Action<Unit> ServerOnUnitSpawn;
     public static event Action<Unit> ServerOnUnitDespawn;
@@ -43,8 +41,8 @@ public class Unit: Selectable
 
     public override void OnStopServer()
     {
-        ServerOnUnitDespawn?.Invoke(this);
         health.ServerOnDie -= ServerHandleDie;
+        ServerOnUnitDespawn?.Invoke(this);
     }
 
     [Server]
@@ -60,6 +58,7 @@ public class Unit: Selectable
     public override void OnStartAuthority()
     {
         AuthoryOnUnitSpawn?.Invoke(this);
+        vision.SetActive(true); // FIXME: right place for this?
     }
 
     public override void OnStopClient()

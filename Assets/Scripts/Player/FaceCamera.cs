@@ -16,8 +16,10 @@ public class FaceCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.LookAt(
-            transform.position + camTransform.rotation * Vector3.forward,
-            camTransform.rotation * Vector3.up);
+        // FIXME: lookat gives weird behavior, using euler angles instead
+        // transform.LookAt(
+        //     transform.position + camTransform.rotation * Vector3.forward,
+        //     camTransform.rotation * Vector3.up);
+        transform.eulerAngles  = camTransform.eulerAngles; 
     }
 }

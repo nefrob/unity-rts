@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ClickMarker : MonoBehaviour
 {
     // Marker display
-    // FIXME: loop in with selection/action managers for different sprites
     [SerializeField] private Image arrow = null;
     [SerializeField] private float displayTime = 1.0f;
     private float remainingDiplayTime;
@@ -42,8 +41,6 @@ public class ClickMarker : MonoBehaviour
 
                 remainingDiplayTime = displayTime;
                 arrow.enabled = true;
-
-                // FIXME: tween sprite?
             }
         }
     }

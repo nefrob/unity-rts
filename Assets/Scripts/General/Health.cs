@@ -19,7 +19,6 @@ public class Health : NetworkBehaviour
     public override void OnStartServer()
     {
         curHealth = maxHealth;
-
         Base.ServerOnPlayerDie += ServerHandlePlayerDie;
     }
 
@@ -31,11 +30,9 @@ public class Health : NetworkBehaviour
     [Server]
     private void ServerHandlePlayerDie(int connectionId)
     {
-        if (connectionToClient.connectionId != connectionId) { return; }
-
+        if (connectionToClient.connectionId != connectionId) return;
         Damage(curHealth);
     }
-
 
     [Server]
     public void Damage(float damage)

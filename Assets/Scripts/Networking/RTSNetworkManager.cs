@@ -8,7 +8,9 @@ using System;
 public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitBasePrefab = null;
-    [SerializeField] private GameOverManager gameOverManagerPrefab = null;
+    [SerializeField] private GameObject gameOverManagerPrefab = null;
+    [SerializeField] private Color[] teamColors = null;
+    [SerializeField] private string gameScene = "TestScene";
 
     public static event Action ClientOnConnected;
     public static event Action ClientOnDisconnected;
@@ -27,6 +29,7 @@ public class RTSNetworkManager : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        if (Players.Count == 0) return;
         Player player = conn.identity.GetComponent<Player>();
         Players.Remove(player);
         base.OnServerDisconnect(conn);
@@ -38,12 +41,13 @@ public class RTSNetworkManager : NetworkManager
         isGameInProgress = false;
     }
 
+    [Server]
     public void StartGame()
     {
         if (Players.Count < 2) return;
 
         isGameInProgress = true;
-        ServerChangeScene("TestScene");
+        ServerChangeScene(gameScene);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -53,22 +57,16 @@ public class RTSNetworkManager : NetworkManager
         Player player = conn.identity.GetComponent<Player>();
         Players.Add(player);
         player.SetDisplayName($"Player {Players.Count}");
-
-        player.SetTeamColor(new Color(
-            UnityEngine.Random.Range(0f, 1f),
-            UnityEngine.Random.Range(0f, 1f),
-            UnityEngine.Random.Range(0f, 1f)
-        ));
-
+        player.SetTeamColor(teamColors[Players.Count - 1]);
         player.SetPartyOwner(Players.Count == 1);
     }
 
     public override void OnServerSceneChanged(string sceneName)
     {
-        if (SceneManager.GetActiveScene().name.StartsWith("TestScene"))
+        if (SceneManager.GetActiveScene().name.StartsWith(gameScene))
         {
-            GameOverManager gameOverHandlerInstance = Instantiate(gameOverManagerPrefab);
-            NetworkServer.Spawn(gameOverHandlerInstance.gameObject);
+            GameObject gameOverManagerInstance = Instantiate(gameOverManagerPrefab);
+            NetworkServer.Spawn(gameOverManagerInstance);
 
             foreach(Player player in Players)
             {

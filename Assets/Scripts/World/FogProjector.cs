@@ -1,5 +1,7 @@
 ﻿/**
  * Ref: https://andrewhungblog.wordpress.com/2018/06/23/implementing-fog-of-war-in-unity/
+ *
+ * Blends between current and previous fog/vision projections to make the edges smoother.
  */
 
 using System.Collections;

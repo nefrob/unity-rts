@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UnitCommander : MonoBehaviour
 {
-    [SerializeField] private UnitSelectionManager unitSelectionManager = null;
+    [SerializeField] private SelectionManager selectionManager = null;
+    [SerializeField] private LayerMask commandMask = new LayerMask();
 
-    [SerializeField] private LayerMask targetMask = new LayerMask();
-
-    private Camera cam;
+    private Camera cam; // main camera
 
     private void Start()
     {
@@ -22,14 +19,13 @@ public class UnitCommander : MonoBehaviour
         GameOverManager.ClientOnGameOver -= ClientHandleGameOver;
     }
 
-
     private void Update()
     {
         if (!Mouse.current.rightButton.wasPressedThisFrame) return;
         
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask)) return;
+        if (!Physics.Raycast(ray, out hit, Mathf.Infinity, commandMask)) return;
 
         if (hit.collider.TryGetComponent<Targetable>(out Targetable target))
         {
@@ -50,23 +46,28 @@ public class UnitCommander : MonoBehaviour
 
     private void TryMove(Vector3 pos)
     {
-        foreach (Unit u in unitSelectionManager.SelectedUnits)
+        if (selectionManager.GetCurrentSelectionType() !=
+            Selectable.SelectType.UNIT) return;
+
+        foreach (Selectable s in selectionManager.SelectedObjects)
         {
-            u.GetUnitMovement().CmdMoveUnit(pos);
+            ((Unit) s).GetUnitMovement().CmdMoveUnit(pos);
         }
     }
 
     private void TryTarget(Targetable target)
     {
-        foreach (Unit unit in unitSelectionManager.SelectedUnits)
+        if (selectionManager.GetCurrentSelectionType() !=
+            Selectable.SelectType.UNIT) return;
+
+        foreach (Selectable s in selectionManager.SelectedObjects)
         {
-            unit.GetTargeter().CmdSetTarget(target.gameObject);
+            ((Unit) s).GetTargeter().CmdSetTarget(target.gameObject);
         }
     }
 
     private void ClientHandleGameOver(string winnerName)
     {
-        enabled = false;
+        enabled = false; // disable commands
     }
-
 }

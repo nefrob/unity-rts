@@ -17,6 +17,7 @@ public class VisionMesh : MonoBehaviour
         visionMesh = new Mesh();
         GenerateVisionMesh();
     }
+
     private void GenerateVisionMesh(int points = 10)
     {
         List<Vector3> verts = new List<Vector3> { };
@@ -44,19 +45,15 @@ public class VisionMesh : MonoBehaviour
         visionCollider.sharedMesh = visionMesh;
     }
 
-    // TODO: need teams support for vision tracking below
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player 2")
-        {
-            // TODO: enable mesh renderer and increase ref count on p2 object
-        }
+        // TODO: toggle mesh renderer on emeny object ON
+        // as it is now in vision
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // TODO: decrease vision ref count on other player's object
-        // TODO: if it hits zero, disable visuals for the object
+        // TODO: toggle mesh renderer on emeny object OFF
+        // as it is now out of vision
     }
 }

@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 {
@@ -17,12 +18,23 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
     [SerializeField] private float spawnMoveRange = 7f;
     [SerializeField] private float unitSpawnDuration = 5f;
 
+    // Gather point
+    [SerializeField] private Building building = null;
+    [SerializeField] private LayerMask groundMask = 0;
+
     [SyncVar(hook = nameof(ClientHandleQueuedUnitsUpdated))]
     private int queuedUnits;
+
     [SyncVar]
     private float unitTimer;
 
     private float progressImageVelocity;
+    private Camera cam;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
 
     private void Update()
     {
@@ -34,6 +46,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         if (isClient)
         {
             UpdateTimerDisplay();
+            if (building.GetIsSelected()) GatherPointInput();
         }
     }
 
@@ -60,7 +73,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
         GameObject unitInstance = Instantiate(
             unitPrefab.gameObject,
-            gatherPoint.position,
+            transform.position + (gatherPoint.position - transform.position).normalized * 2.0f,
             gatherPoint.rotation);
 
         NetworkServer.Spawn(unitInstance, connectionToClient);
@@ -93,14 +106,35 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         queuedUnits++;
     }
 
+    [Command]
+    private void CmdSetGatherPoint(Vector3 pos)
+    {
+        gatherPoint.position = pos;
+    }
+
     #endregion
 
     #region client
+
+    [Client]
+    private void GatherPointInput()
+    {
+        if (!Mouse.current.rightButton.wasPressedThisFrame) return;
+        
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundMask))
+        {
+            Vector3 pos = hit.point;
+            pos.y = gatherPoint.position.y;
+            CmdSetGatherPoint(pos);
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
         if (!hasAuthority) return;
+        if (!building.GetIsSelected()) return;
 
         CmdSpawnUnit();
     }

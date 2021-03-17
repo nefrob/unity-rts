@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
 
 public class UnitSelectionManager : MonoBehaviour
 {
+    // TODO: delete script
+
     public HashSet<Unit> SelectedUnits { get; } = new HashSet<Unit>();
 
     [SerializeField] private RectTransform selectionBox = null;
@@ -13,7 +14,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     [SerializeField] private LayerMask selectionMask = new LayerMask();
 
-    private Camera cam;
+    private Camera cam; // main camera
     private Player player;
 
     private void Start()
@@ -58,7 +59,6 @@ public class UnitSelectionManager : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity, selectionMask)) return;
 
         if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) return;
@@ -84,11 +84,10 @@ public class UnitSelectionManager : MonoBehaviour
         Vector2 min = selectionBox.anchoredPosition - (selectionBox.sizeDelta / 2);
         Vector2 max = selectionBox.anchoredPosition + (selectionBox.sizeDelta / 2);
 
-        // FIXME: maybe check if shift still held?
+        // FIXME: check if shift still held?
 
         foreach (Unit unit in player.GetAllUnits())
         {
-
             if (SelectedUnits.Contains(unit)) continue;
 
             Vector3 screenPos = cam.WorldToScreenPoint(unit.transform.position);
@@ -131,6 +130,6 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void ClientHandleGameOver(string winnerName)
     {
-        enabled = false;
+        this.enabled = false;
     }
 }

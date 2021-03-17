@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
@@ -11,7 +10,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private float buildingRangeLimit = 2.0f;
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
-    private int resources = 500;
+    private int resources = 10000;
 
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner = false;
@@ -98,7 +97,6 @@ public class Player : NetworkBehaviour
         Unit.ServerOnUnitDespawn -= ServerHandleUnitDespawn;
         Building.ServerOnBuildingSpawn -= ServerHandleBuildingSpawn;
         Building.ServerOnBuildingDespawn -= ServerHandleBuildingDespawn;
-
     }
 
     [Server]
@@ -180,7 +178,7 @@ public class Player : NetworkBehaviour
     private void ServerHandleBuildingSpawn(Building building)
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) 
-        { 
+        {
             return; 
         }
 
@@ -202,10 +200,8 @@ public class Player : NetworkBehaviour
     public void CmdStartGame()
     {
         if (!isPartyOwner) return;
-
         ((RTSNetworkManager)NetworkManager.singleton).StartGame();
     }
-
 
     #endregion
 
@@ -215,8 +211,8 @@ public class Player : NetworkBehaviour
     {
         if (NetworkServer.active) return;
 
-        Unit.AuthoryOnUnitSpawn -= AuthoryHandleUnitSpawn;
-        Unit.AuthoryOnUnitDespawn -= AuthoryHandleUnitDespawn;
+        Unit.AuthoryOnUnitSpawn += AuthoryHandleUnitSpawn;
+        Unit.AuthoryOnUnitDespawn += AuthoryHandleUnitDespawn;
         Building.AuthorityOnBuildingSpawn += AuthorityHandleBuildingSpawn;
         Building.AuthorityOnBuildingDespawn += AuthorityHandleBuildingDespawn;
     }

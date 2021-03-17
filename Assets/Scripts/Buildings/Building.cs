@@ -4,12 +4,13 @@ using UnityEngine;
 using Mirror;
 using System;
 
-public class Building : NetworkBehaviour
+public class Building : Selectable
 {
     [SerializeField] private Sprite icon = null;
     [SerializeField] private int id = -1;
     [SerializeField] private int price = 100;
     [SerializeField] private GameObject buildingPreview = null;
+    [SerializeField] private GameObject vision = null;
 
     public static event Action<Building> ServerOnBuildingSpawn;
     public static event Action<Building> ServerOnBuildingDespawn;
@@ -56,11 +57,12 @@ public class Building : NetworkBehaviour
     public override void OnStartAuthority()
     {
         AuthorityOnBuildingSpawn?.Invoke(this);
+        vision.SetActive(true); // FIXME: right place for this?
     }
 
     public override void OnStopClient()
     {
-        if (!hasAuthority) { return; }
+        if (!hasAuthority) return;
 
         AuthorityOnBuildingDespawn?.Invoke(this);
     }

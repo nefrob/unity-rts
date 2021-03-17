@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
-using UnityEngine.InputSystem;
 
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Targeter targeter = null;
-    [SerializeField] float chaseRange = 10.0f;
+    [SerializeField] private float minChaseRange = 5.0f;
+    [SerializeField] private float maxChaseRange = 10.0f;
 
     #region server
 
@@ -23,15 +21,15 @@ public class UnitMovement : NetworkBehaviour
         GameOverManager.ServerOnGameOver -= ServerHandleGameOver;
     }
 
-
     [ServerCallback]
     private void Update()
     {
         Targetable target = targeter.GetTarget();
         if (target != null)
         {
-            if ((target.transform.position - transform.position).sqrMagnitude
-                > chaseRange * chaseRange)
+            float distSquared = (target.transform.position - transform.position).sqrMagnitude;
+            if (distSquared > minChaseRange * minChaseRange 
+                && distSquared < maxChaseRange * maxChaseRange)
             {
                 agent.SetDestination(target.transform.position);
             } else if (agent.hasPath)
@@ -71,9 +69,8 @@ public class UnitMovement : NetworkBehaviour
     [Server]
     private void ServerHandleGameOver()
     {
-        agent.ResetPath();
+        if (agent.isOnNavMesh && agent.hasPath) agent.ResetPath();
     }
-
 
     #endregion
 }
