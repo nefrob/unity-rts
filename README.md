@@ -20,7 +20,9 @@ The following gameplay features are present:
 
 #### Images
 
-TODO:
+<img src="./demo_imgs/Menu.png" alt="Main menu host screen" width="500"/>
+<img src="./demo_imgs/select.png" alt="Box selection" width="500"/>
+<img src="./demo_imgs/attack.png" alt="Units firing on enemy base" width="500"/>
 
 #### Areas to build on this project:
 
@@ -43,6 +45,6 @@ TODO:
 
 [Mirror](https://assetstore.unity.com/packages/tools/network/mirror-129321)
 
-[FizzySteamworks](https://github.com/Chykary/FizzySteamworks) and [Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET).
+[FizzySteamworks](https://github.com/Chykary/FizzySteamworks) and [Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET)
 
 [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html)
