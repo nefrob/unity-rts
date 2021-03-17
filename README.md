@@ -20,7 +20,7 @@ The following gameplay features are present:
 
 #### Images
 
-<img src="./demo_imgs/Menu.png" alt="Main menu host screen" width="500"/>
+<img src="./demo_imgs/menu.png" alt="Main menu host screen" width="500"/>
 <img src="./demo_imgs/select.png" alt="Box selection" width="500"/>
 <img src="./demo_imgs/attack.png" alt="Units firing on enemy base" width="500"/>
 
