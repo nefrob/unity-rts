@@ -1,6 +1,6 @@
 # unity-rts
 
-This project implements a basic RTS game using Unity game engine (2020.1.3f1) and C#. It is based on [this](https://www.udemy.com/course/unity-multiplayer/) Udemy course, with expanded mechanics.
+This project implements a basic RTS game using Unity game engine (2020.1.3f1) and C#. It is based on [this](https://www.udemy.com/course/unity-multiplayer/) Udemy course with expanded mechanics.
 
 The following gameplay features are present:  
 - Camera movement (pan, rotate and zoom) with clamping to the edge of the map.  
@@ -15,7 +15,7 @@ The following gameplay features are present:
 
 #### Controls
 
-- Camera move: `WASD` to pan (this can be toggled to mouse at edges of the screen if preferred), `QE` to rotate, mouse `scroll` to zoom.  
+- Camera move: `WASD` to pan (this can be toggled to mouse at edges of the screen if preferred), `QE` to rotate, and mouse `scroll` to zoom.  
 - Mouse `left` to select, hold to drag select. Mouse `right` to command (ex. move). Clicking on a selected building creates a new unit if you have enough resources.
 
 #### Images
@@ -27,12 +27,12 @@ The following gameplay features are present:
 #### Areas to build on this project:
 
 - Level building or generation (perhaps using grid world like *Age of Empires*).
-- Collectible resources on the map. A "Villager" type unit to gather resources would then also be necessary.  
+- Collectible resources on the map. A "villager" type unit to gather resources would then also be necessary.  
 - Proper melee units.  
 - Attack stances (chase, stand ground, etc.) and formations.  
 - Ranged unit projectile tracking for 100 percent accuracy on shots.   
 - Enemy offline AI.  
-- more units and building types.  
+- More units and building types.  
 - Audio, art, particle effects, animation, etc.  
 
 #### Issues:
